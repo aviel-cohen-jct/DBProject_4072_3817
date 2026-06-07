@@ -1,73 +1,167 @@
-# React + TypeScript + Vite
+# פנטזי ליג — דוח פרויקט שלב א'
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## שער
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**מגישים:** אביאל כהן, נתנאל דהן
 
-## React Compiler
+**שם המערכת:** פנטזי ליג
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**היחידה הנבחרת:** בורסת השחקנים של הליגה
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## תוכן עניינים
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. [מבוא](#מבוא)
+2. [תיאור הנתונים](#תיאור-הנתונים)
+3. [פונקציונאליות עיקרית](#פונקציונאליות-עיקרית)
+4. [מבנה בסיס הנתונים](#מבנה-בסיס-הנתונים)
+5. [הוראות הרצה](#הוראות-הרצה)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## מבוא
+
+פנטזי ליג היא מערכת המדמה בורסת שחקנים בליגת הכדורגל הישראלית.
+כל משתמש מתחיל עם תקציב התחלתי ויכול לקנות ולמכור שחקנים בהתאם לביצועיהם בשטח.
+ערך כל שחקן משתנה מסבב לסבב בהתאם לנתוניו, בדומה למניה בשוק ההון.
+
+המערכת שומרת את פרטי השחקנים, היסטוריית המחירים לאורך עונה שלמה (36 סבבים), עסקאות הקנייה והמכירה של כל משתמש, והרכב הסגל האישי שלו.
+
+המטרה היא לאפשר למשתמש לנהל תיק השקעות וירטואלי של שחקנים, לעקוב אחר רווח והפסד, ולקבל החלטות קנייה ומכירה מושכלות.
+
+---
+
+## תיאור הנתונים
+
+המערכת מנהלת שישה סוגי ישויות מרכזיות:
+
+### משתמשים (USERS)
+כל משתמש מזוהה בשם ייחודי ומחזיק תקציב נוכחי. התקציב מתעדכן בכל קנייה או מכירה של שחקן ואינו יכול לרדת מאפס.
+
+### שחקנים (PLAYERS)
+כל שחקן מוגדר לפי שם, עמדה (שוער / מגן / קשר / חלוץ), שם הקבוצה שבה הוא משחק, ומחיר עדכני. המחיר נע בטווח קבוע בין 4,000 ל-20,000 יחידות.
+
+### סבבים (ROUNDS)
+עונה מורכבת מ-36 סבבים. כל סבב מוגדר בתאריכי התחלה וסיום ובסטטוס שלו (עתידי / פעיל / הסתיים). הסבבים מהווים את ציר הזמן שלפיו מתעדכנים מחירי השחקנים.
+
+### היסטוריית מחירים (PRICE_HISTORY)
+לכל שחקן נשמר המחיר שנרשם עבורו בכל סבב. כך ניתן לעקוב אחר מגמות עלייה וירידה בערך השחקן לאורך כל העונה.
+
+### עסקאות (TRANSACTIONS)
+כל פעולת קנייה או מכירה של שחקן על ידי משתמש נרשמת עם חותמת זמן, סוג הפעולה, מחיר הביצוע, זהות המשתמש והשחקן. הטבלה מהווה לוג מלא של כל פעילות המסחר.
+
+### סגל אישי (USER_SQUADS)
+לכל משתמש ייתכנו מספר שחקנים בסגל. כל שחקן בסגל מוגדר כמחליף (Bench) או שחקן פותח (Starter).
+
+---
+
+## פונקציונאליות עיקרית
+
+- **מסחר בשחקנים** — קנייה ומכירה של שחקנים תוך עדכון תקציב המשתמש בזמן אמת
+- **ניהול סגל אישי** — הרכבת קבוצה אישית ושיבוץ שחקנים להרכב הפותח או ספסל החלופות
+- **מעקב מחירים** — צפייה בהיסטוריית מחיר של כל שחקן לאורך סבבי העונה
+- **היסטוריית עסקאות** — תיעוד מלא של כל פעולות המסחר עם מועד וסכום לכל עסקה
+- **ניהול תקציב** — מעקב אחר יתרת התקציב ומניעת חריגה לחובה
+
+---
+
+## מבנה בסיס הנתונים
+
+```
+USERS
+├── User_ID        INT  (PK)
+├── User_Name      VARCHAR(50)
+└── Current_Budget INT  (>= 0)
+
+PLAYERS
+├── Player_ID      INT  (PK)
+├── First_Name     VARCHAR(50)
+├── Last_Name      VARCHAR(50)
+├── Position       VARCHAR(20)  ('Goalkeeper' | 'Defender' | 'Midfielder' | 'Attacker')
+├── Team_Name      VARCHAR(50)
+└── Current_Price  INT  (4000-20000)
+
+ROUNDS
+├── Round_ID       INT  (PK)
+├── Round_Number   INT  (1-36)
+├── Start_Date     TIMESTAMP
+├── End_Date       TIMESTAMP
+└── Status         VARCHAR(20)  ('Upcoming' | 'Active' | 'Completed')
+
+PRICE_HISTORY
+├── History_ID     INT  (PK)
+├── Recorded_Price INT  (4000-20000)
+├── Player_ID      INT  (FK -> PLAYERS)
+└── Round_ID       INT  (FK -> ROUNDS)
+
+TRANSACTIONS
+├── Transaction_ID    INT  (PK)
+├── Transaction_Time  TIMESTAMP
+├── Action_Type       VARCHAR(10)  ('BUY' | 'SELL')
+├── Transaction_Price INT  (4000-20000)
+├── User_ID           INT  (FK -> USERS)
+└── Player_ID         INT  (FK -> PLAYERS)
+
+USER_SQUADS
+├── Squad_Record_ID  INT  (PK)
+├── Lineup_Status    VARCHAR(20)  ('Starter' | 'Bench')
+├── User_ID          INT  (FK -> USERS)
+└── Player_ID        INT  (FK -> PLAYERS)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**נתוני הזרעה (Seed Data):**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| טבלה | כמות רשומות |
+|------|-------------|
+| USERS | 500 |
+| PLAYERS | 500 |
+| ROUNDS | 504 |
+| TRANSACTIONS | 20,000 |
+| PRICE_HISTORY | 20,000 |
+| USER_SQUADS | 500 |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## הוראות הרצה
+
+### דרישות מוקדמות
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+### הפעלת בסיס הנתונים
+
+```bash
+docker-compose up -d
 ```
+
+בסיס הנתונים יאותחל אוטומטית עם כל הטבלאות והנתונים.
+
+### ממשק ניהול — PgAdmin
+
+פתח דפדפן בכתובת **http://localhost:8080**
+
+| שדה | ערך |
+|-----|-----|
+| Email | admin@admin.com |
+| Password | admin |
+
+לאחר הכניסה, הוסף שרת חדש עם הפרטים:
+
+| שדה | ערך |
+|-----|-----|
+| Host | db |
+| Port | 5432 |
+| Database | fantasy_db |
+| Username | postgres |
+| Password | 123456 |
+
+### הפעלת ממשק המשתמש (React)
+
+```bash
+npm install
+npm run dev
+```
+
+הממשק יעלה בכתובת **http://localhost:5173**
