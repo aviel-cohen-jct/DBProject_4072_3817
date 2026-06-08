@@ -50,6 +50,9 @@
 3. **הסגל שלי** — ניהול הרכב אישי עם חישוב רווח/הפסד לכל שחקן
 4. **היסטוריית עסקאות** — לוג מלא של כל פעולות הקנייה והמכירה
 
+> [!TIP]
+> **קישור לאפליקציה ב-Google AI Studio:** [בורסת השחקנים - פנטזי ליג](https://ai.studio/apps/46cbc314-4ef9-41cd-84d4-4cb8117e9d5a)
+
 > צילומי מסך מה-AI Studio יתווספו כאן
 
 ---
@@ -254,23 +257,45 @@ USER_SQUADS
 ## מבנה תיקיות הפרויקט
 
 ```
-db-project-ui/
+db-project-ui/ (שורש ה-Repository)
+│
+├── DBProject_4072_3817/        # תיקיית ההגשה הרשמית (תעודות זהות)
+│   └── שלב א/
+│       ├── system_specification.md # איפיון המערכת - Google AI Studio
+│       ├── ERD.png             # קובץ ERD
+│       ├── DSD.png             # קובץ DSD
+│       ├── createTables.sql    # סקריפט DDL ליצירת טבלאות
+│       ├── dropTables.sql      # סקריפט DDL למחיקת טבלאות
+│       ├── insertTables.sql    # סקריפט אכלוס נתונים מלא (41,500+ שורות)
+│       ├── selectAll.sql       # שאילתות בדיקה לכל הטבלאות
+│       ├── backup_2026-06-08.sql # קובץ גיבוי בסיס הנתונים
+│       │
+│       ├── Manual/             # שיטת אכלוס 1: ידנית (סבבים)
+│       │   └── ROUNDS.sql
+│       │
+│       ├── mockarooFiles/      # שיטת אכלוס 2: אתר Mockaroo (משתמשים ושחקנים)
+│       │   ├── USERS.sql
+│       │   └── PLAYERS.sql
+│       │
+│       └── Programing/         # שיטת אכלוס 3: קוד פייתון (עסקאות, היסטוריית מחירים וסגלים)
+│           ├── generate_massive_data.py
+│           └── massive_inserts.sql
 │
 ├── src/                        # קוד ממשק המשתמש (React + TypeScript)
 │   ├── App.tsx                 # הרכיב הראשי — כל לוגיקת הממשק
 │   ├── main.tsx                # נקודת כניסה
 │   └── index.css               # סגנונות
 │
-├── init-db/                    # סקריפטי אתחול בסיס הנתונים
-│   ├── 01_drop.sql             # מחיקת טבלאות (dropTables)
-│   ├── 02_create.sql           # יצירת טבלאות (createTables)
-│   ├── 03_players.sql          # נתוני שחקנים (500 רשומות)
-│   ├── 04_rounds.sql           # נתוני סבבים (504 רשומות)
-│   ├── 05_users.sql            # נתוני משתמשים (500 רשומות)
-│   ├── 06_transactions.sql     # עסקאות (20,000 רשומות)
-│   ├── 07_price_history.sql    # היסטוריית מחירים (20,000 רשומות)
-│   ├── 08_user_squads.sql      # סגלי משתמשים (500 רשומות)
-│   └── generate_massive_data.py  # סקריפט Python ליצירת נתונים
+├── init-db/                    # סקריפטי אתחול מקוריים של Docker
+│   ├── 01_drop.sql
+│   ├── 02_create.sql
+│   ├── 03_players.sql
+│   ├── 04_rounds.sql
+│   ├── 05_users.sql
+│   ├── 06_transactions.sql
+│   ├── 07_price_history.sql
+│   ├── 08_user_squads.sql
+│   └── generate_massive_data.py
 │
 ├── images/                     # תמונות לדוח
 │   ├── ERD.png
@@ -282,7 +307,6 @@ db-project-ui/
 │   ├── backup success (1 method).png
 │   └── backup success (2 method).png
 │
-├── backup_2026-06-08.sql       # קובץ גיבוי משורת פקודה
 ├── docker-compose.yml          # הגדרות Docker (PostgreSQL + PgAdmin)
 ├── .env                        # משתני סביבה (סיסמאות, שם DB)
 └── README.md                   # דוח הפרויקט
