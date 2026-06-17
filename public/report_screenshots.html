@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+  <meta charset="UTF-8">
+  <title>דוח הרצות שלב ב' - פנטזי ליג</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: #0b0f19;
+      color: #e2e8f0;
+      margin: 0;
+      padding: 40px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #10b981;
+      border-bottom: 2px solid #1e293b;
+      padding-bottom: 15px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .card {
+      background-color: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-top: 0;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 8px;
+    }
+    .sql-code {
+      background-color: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      color: #38bdf8;
+      white-space: pre-wrap;
+      margin-bottom: 16px;
+    }
+    .explain-block {
+      background-color: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      white-space: pre;
+      overflow-x: auto;
+      max-height: 150px;
+      margin-bottom: 16px;
+    }
+    .error-block {
+      background-color: #7f1d1d;
+      border: 1px solid #b91c1c;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      color: #fca5a5;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      background-color: #020617;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 10px 14px;
+      text-align: right;
+      border-bottom: 1px solid #1e293b;
+    }
+    th {
+      background-color: #1e293b;
+      color: #10b981;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    td {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .flex-tables {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .flex-table-item {
+      flex: 1;
+      min-width: 300px;
+    }
+    .table-title {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #10b981;
+      margin-bottom: 6px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>פנטזי ליג - דוח הרצות שלב ב'</h1>
+<div class="card" id="select1a"><div class="card-title">שאילתה 1 גרסה א' (NOT IN) - שחקנים שלא נרכשו</div><div class="sql-code">SELECT Player_ID, First_Name, Last_Name, Team_Name, Current_Price FROM PLAYERS WHERE Player_ID NOT IN (SELECT DISTINCT Player_ID FROM TRANSACTIONS WHERE Action_Type = 'BUY' AND Player_ID IS NOT NULL) LIMIT 5;</div><div class="table-title">תוצאת השאילתה (מוגבל ל-5 שורות):</div><div class="no-data">אין נתונים להצגה</div><div class="table-title">תוכנית הרצה (EXPLAIN ANALYZE):</div><div class="explain-block">Limit  (cost=439.25..439.48 rows=5 width=32) (actual time=3.058..3.059 rows=0.00 loops=1)
+  Buffers: shared hit=163
+  ->  Seq Scan on players  (cost=439.25..450.50 rows=250 width=32) (actual time=3.057..3.058 rows=0.00 loops=1)
+        Filter: (NOT (ANY (player_id = (hashed SubPlan 1).col1)))
+        Rows Removed by Filter: 500
+        Buffers: shared hit=163
+        SubPlan 1
+          ->  HashAggregate  (cost=433.00..438.00 rows=500 width=4) (actual time=2.864..2.905 rows=500.00 loops=1)
+                Group Key: transactions.player_id
+                Batches: 1  Memory Usage: 57kB
+                Buffers: shared hit=158
+                ->  Seq Scan on transactions  (cost=0.00..408.00 rows=10000 width=4) (actual time=0.007..1.668 rows=10000.00 loops=1)
+                      Filter: ((action_type)::text = 'BUY'::text)
+                      Rows Removed by Filter: 10000
+                      Buffers: shared hit=158
+Planning:
+  Buffers: shared hit=143
+Planning Time: 79.670 ms
+Execution Time: 3.129 ms</div></div><div class="card" id="select1b"><div class="card-title">שאילתה 1 גרסה ב' (NOT EXISTS) - שחקנים שלא נרכשו (מומלצת)</div><div class="sql-code">SELECT p.Player_ID, p.First_Name, p.Last_Name, p.Team_Name, p.Current_Price FROM PLAYERS p WHERE NOT EXISTS (SELECT 1 FROM TRANSACTIONS t WHERE t.Player_ID = p.Player_ID AND t.Action_Type = 'BUY') LIMIT 5;</div><div class="table-title">תוצאת השאילתה (מוגבל ל-5 שורות):</div><div class="no-data">אין נתונים להצגה</div><div class="table-title">תוכנית הרצה (EXPLAIN ANALYZE):</div><div class="explain-block">Limit  (cost=533.00..548.00 rows=1 width=32) (actual time=2.901..2.902 rows=0.00 loops=1)
+  Buffers: shared hit=163
+  ->  Hash Anti Join  (cost=533.00..548.00 rows=1 width=32) (actual time=2.901..2.901 rows=0.00 loops=1)
+        Hash Cond: (p.player_id = t.player_id)
+        Buffers: shared hit=163
+        ->  Seq Scan on players p  (cost=0.00..10.00 rows=500 width=32) (actual time=0.005..0.032 rows=500.00 loops=1)
+              Buffers: shared hit=5
+        ->  Hash  (cost=408.00..408.00 rows=10000 width=4) (actual time=2.765..2.765 rows=10000.00 loops=1)
+              Buckets: 16384  Batches: 1  Memory Usage: 480kB
+              Buffers: shared hit=158
+              ->  Seq Scan on transactions t  (cost=0.00..408.00 rows=10000 width=4) (actual time=0.004..1.705 rows=10000.00 loops=1)
+                    Filter: ((action_type)::text = 'BUY'::text)
+                    Rows Removed by Filter: 10000
+                    Buffers: shared hit=158
+Planning:
+  Buffers: shared hit=31
+Planning Time: 0.185 ms
+Execution Time: 2.999 ms</div></div><div class="card" id="select2a"><div class="card-title">שאילתה 2 גרסה א' (JOIN) - 5 המשתמשים שהוציאו הכי הרבה ב-2026</div><div class="sql-code">SELECT u.User_ID, u.User_Name, SUM(t.Transaction_Price) as Total_Spent FROM USERS u JOIN TRANSACTIONS t ON u.User_ID = t.User_ID WHERE t.Action_Type = 'BUY' AND t.Transaction_Time >= '2026-01-01 00:00:00' GROUP BY u.User_ID, u.User_Name ORDER BY Total_Spent DESC LIMIT 5;</div><div class="table-title">תוצאת השאילתה (מוגבל ל-5 שורות):</div><table><thead><tr><th>user_id</th><th>user_name</th><th>total_spent</th></tr></thead><tbody><tr><td>231</td><td>dgaineofengland6e</td><td>59509</td></tr><tr><td>166</td><td>dpriddle4l</td><td>50619</td></tr><tr><td>382</td><td>cyesinoval</td><td>45164</td></tr><tr><td>261</td><td>kjammes78</td><td>44381</td></tr><tr><td>386</td><td>dtromansap</td><td>43684</td></tr></tbody></table><div class="table-title">תוכנית הרצה (EXPLAIN ANALYZE):</div><div class="explain-block">Limit  (cost=484.46..484.47 rows=5 width=22) (actual time=1.251..1.253 rows=5.00 loops=1)
+  Buffers: shared hit=165
+  ->  Sort  (cost=484.46..485.27 rows=327 width=22) (actual time=1.251..1.252 rows=5.00 loops=1)
+        Sort Key: (sum(t.transaction_price)) DESC
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=165
+        ->  HashAggregate  (cost=475.75..479.02 rows=327 width=22) (actual time=1.180..1.205 rows=242.00 loops=1)
+              Group Key: u.user_id
+              Batches: 1  Memory Usage: 56kB
+              Buffers: shared hit=162
+              ->  Hash Join  (cost=15.25..474.12 rows=327 width=18) (actual time=0.107..1.048 rows=333.00 loops=1)
+                    Hash Cond: (t.user_id = u.user_id)
+                    Buffers: shared hit=162
+                    ->  Seq Scan on transactions t  (cost=0.00..458.00 rows=327 width=8) (actual time=0.009..0.893 rows=333.00 loops=1)
+                          Filter: ((transaction_time >= '2026-01-01 00:00:00'::timestamp without time zone) AND ((action_type)::text = 'BUY'::text))
+                          Rows Removed by Filter: 19667
+                          Buffers: shared hit=158
+                    ->  Hash  (cost=9.00..9.00 rows=500 width=14) (actual time=0.095..0.095 rows=500.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 31kB
+                          Buffers: shared hit=4
+                          ->  Seq Scan on users u  (cost=0.00..9.00 rows=500 width=14) (actual time=0.005..0.040 rows=500.00 loops=1)
+                                Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=63 read=1
+Planning Time: 44.291 ms
+Execution Time: 1.283 ms</div></div><div class="card" id="select2b"><div class="card-title">שאילתה 2 גרסה ב' (Subquery) - 5 המשתמשים שהוציאו הכי הרבה ב-2026</div><div class="sql-code">SELECT u.User_ID, u.User_Name, (SELECT SUM(t.Transaction_Price) FROM TRANSACTIONS t WHERE t.User_ID = u.User_ID AND t.Action_Type = 'BUY' AND t.Transaction_Time >= '2026-01-01 00:00:00') as Total_Spent FROM USERS u WHERE (SELECT SUM(t.Transaction_Price) FROM TRANSACTIONS t WHERE t.User_ID = u.User_ID AND t.Action_Type = 'BUY' AND t.Transaction_Time >= '2026-01-01 00:00:00') IS NOT NULL ORDER BY Total_Spent DESC LIMIT 5;</div><div class="table-title">תוצאת השאילתה (מוגבל ל-5 שורות):</div><table><thead><tr><th>user_id</th><th>user_name</th><th>total_spent</th></tr></thead><tbody><tr><td>231</td><td>dgaineofengland6e</td><td>59509</td></tr><tr><td>166</td><td>dpriddle4l</td><td>50619</td></tr><tr><td>382</td><td>cyesinoval</td><td>45164</td></tr><tr><td>261</td><td>kjammes78</td><td>44381</td></tr><tr><td>386</td><td>dtromansap</td><td>43684</td></tr></tbody></table><div class="table-title">תוכנית הרצה (EXPLAIN ANALYZE):</div><div class="explain-block">Limit  (cost=60979.16..60979.17 rows=5 width=22) (actual time=23.893..23.895 rows=5.00 loops=1)
+  Buffers: shared hit=15489 read=17
+  ->  Sort  (cost=60979.16..60980.40 rows=498 width=22) (actual time=23.892..23.893 rows=5.00 loops=1)
+        Sort Key: ((SubPlan 1)) DESC
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=15489 read=17
+        ->  Seq Scan on users u  (cost=0.00..60970.89 rows=498 width=22) (actual time=0.137..23.833 rows=242.00 loops=1)
+              Filter: ((SubPlan 2) IS NOT NULL)
+              Rows Removed by Filter: 258
+              Buffers: shared hit=15489 read=17
+              SubPlan 1
+                ->  Aggregate  (cost=61.07..61.08 rows=1 width=8) (actual time=0.010..0.010 rows=1.00 loops=242)
+                      Buffers: shared hit=5129
+                      ->  Bitmap Heap Scan on transactions t  (cost=4.49..61.07 rows=1 width=4) (actual time=0.006..0.009 rows=1.38 loops=242)
+                            Recheck Cond: ((user_id = u.user_id) AND ((action_type)::text = 'BUY'::text))
+                            Filter: (transaction_time >= '2026-01-01 00:00:00'::timestamp without time zone)
+                            Rows Removed by Filter: 19
+                            Heap Blocks: exact=4645
+                            Buffers: shared hit=5129
+                            ->  Bitmap Index Scan on idx_transactions_user_action  (cost=0.00..4.49 rows=20 width=0) (actual time=0.002..0.002 rows=20.67 loops=242)
+                                  Index Cond: ((user_id = u.user_id) AND ((action_type)::text = 'BUY'::text))
+                                  Index Searches: 242
+                                  Buffers: shared hit=484
+              SubPlan 2
+                ->  Aggregate  (cost=61.07..61.08 rows=1 width=8) (actual time=0.042..0.042 rows=1.00 loops=500)
+                      Buffers: shared hit=10356 read=17
+                      ->  Bitmap Heap Scan on transactions t_1  (cost=4.49..61.07 rows=1 width=4) (actual time=0.039..0.041 rows=0.67 loops=500)
+                            Recheck Cond: ((user_id = u.user_id) AND ((action_type)::text = 'BUY'::text))
+                            Filter: (transaction_time >= '2026-01-01 00:00:00'::timestamp without time zone)
+                            Rows Removed by Filter: 19
+                            Heap Blocks: exact=9373
+                            Buffers: shared hit=10356 read=17
+                            ->  Bitmap Index Scan on idx_transactions_user_action  (cost=0.00..4.49 rows=20 width=0) (actual time=0.032..0.032 rows=20.00 loops=500)
+                                  Index Cond: ((user_id = u.user_id) AND ((action_type)::text = 'BUY'::text))
+                                  Index Searches: 500
+                                  Buffers: shared hit=983 read=17
+Planning Time: 0.118 ms
+Execution Time: 23.919 ms</div></div><div class="card" id="select3a"><div class="card-title">שאילתה 3 גרסה א' (LEFT JOIN) - כמות היסטוריית מחירים לכל שחקן</div><div class="sql-code">SELECT p.Player_ID, p.First_Name || ' ' || p.Last_Name as Player_Name, COUNT(ph.History_ID) as History_Count FROM PLAYERS p LEFT JOIN PRICE_HISTORY ph ON p.Player_ID = ph.Player_ID GROUP BY p.Player_ID, p.First_Name, p.Last_Name ORDER BY History_Count DESC LIMIT 5;</div><div class="table-title">תוצאת השאילתה (מוגבל ל-5 שורות):</div><table><thead><tr><th>player_id</th><th>player_name</th><th>history_count</th></tr></thead><tbody><tr><td>169</td><td>Crysta Henker</td><td>62</td></tr><tr><td>251</td><td>Tobi Garrettson</td><td>60</td></tr><tr><td>429</td><td>Nerita Pheasey</td><td>58</td></tr><tr><td>235</td><td>Delphinia Beadles</td><td>58</td></tr><tr><td>195</td><td>Stephani MacAllister</td><td>55</td></tr></tbody></table><div class="table-title">תוכנית הרצה (EXPLAIN ANALYZE):</div><div class="explain-block">Limit  (cost=494.00..494.01 rows=5 width=59) (actual time=7.128..7.130 rows=5.00 loops=1)
+  Buffers: shared hit=114
+  ->  Sort  (cost=494.00..495.25 rows=500 width=59) (actual time=7.127..7.128 rows=5.00 loops=1)
+        Sort Key: (count(ph.history_id)) DESC
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=114
+        ->  HashAggregate  (cost=478.19..485.69 rows=500 width=59) (actual time=6.962..7.046 rows=500.00 loops=1)
+              Group Key: p.player_id
+              Batches: 1  Memory Usage: 73kB
+              Buffers: shared hit=114
+              ->  Hash Right Join  (cost=16.25..378.19 rows=20000 width=23) (actual time=0.113..4.289 rows=20000.00 loops=1)
+                    Hash Cond: (ph.player_id = p.player_id)
+                    Buffers: shared hit=114
+                    ->  Seq Scan on price_history ph  (cost=0.00..309.00 rows=20000 width=8) (actual time=0.003..0.949 rows=20000.00 loops=1)
+                          Buffers: shared hit=109
+                    ->  Hash  (cost=10.00..10.00 rows=500 width=19) (actual time=0.108..0.108 rows=500.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 33kB
+                          Buffers: shared hit=5
+                          ->  Seq Scan on players p  (cost=0.00..10.00 rows=500 width=19) (actual time=0.007..0.047 rows=500.00 loops=1)
+                                Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=53
+Planning Time: 0.274 ms
+Execution Time: 7.162 ms</div></div><div class="card" id="select3b"><div class="card-title">שאילתה 3 גרסה ב' (Subquery) - כמות היסטוריית מחירים לכל שחקן</div><div class="sql-code">SELECT p.Player_ID, p.First_Name || ' ' || p.Last_Name as Player_Name, (SELECT COUNT(*) FROM PRICE_HISTORY ph WHERE ph.Player_ID = p.Player_ID) as History_Count FROM PLAYERS p ORDER BY History_Count DESC LIMIT 5;</div><div class="table-title">תוצאת השאילתה (מוגבל ל-5 שורות):</div><table><thead><tr><th>player_id</th><th>player_name</th><th>history_count</th></tr></thead><tbody><tr><td>169</td><td>Crysta Henker</td><td>62</td></tr><tr><td>251</td><td>Tobi Garrettson</td><td>60</td></tr><tr><td>429</td><td>Nerita Pheasey</td><td>58</td></tr><tr><td>235</td><td>Delphinia Beadles</td><td>58</td></tr><tr><td>195</td><td>Stephani MacAllister</td><td>55</td></tr></tbody></table><div class="table-title">תוכנית הרצה (EXPLAIN ANALYZE):</div><div class="explain-block">Limit  (cost=2569.55..2569.57 rows=5 width=44) (actual time=2.753..2.755 rows=5.00 loops=1)
+  Buffers: shared hit=1006
+  ->  Sort  (cost=2569.55..2570.80 rows=500 width=44) (actual time=2.753..2.753 rows=5.00 loops=1)
+        Sort Key: ((SubPlan 1)) DESC
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=1006
+        ->  Seq Scan on players p  (cost=0.00..2561.25 rows=500 width=44) (actual time=0.024..2.676 rows=500.00 loops=1)
+              Buffers: shared hit=1006
+              SubPlan 1
+                ->  Aggregate  (cost=5.09..5.10 rows=1 width=8) (actual time=0.005..0.005 rows=1.00 loops=500)
+                      Buffers: shared hit=1001
+                      ->  Index Only Scan using idx_price_history_player on price_history ph  (cost=0.29..4.99 rows=40 width=0) (actual time=0.001..0.003 rows=40.00 loops=500)
+                            Index Cond: (player_id = p.player_id)
+                            Heap Fetches: 0
+                            Index Searches: 500
+                            Buffers: shared hit=1001
+Planning:
+  Buffers: shared hit=3
+Planning Time: 0.086 ms
+Execution Time: 2.785 ms</div></div><div class="card" id="select4a"><div class="card-title">שאילתה 4 גרסה א' (IN) - מחזיקים שחקן מקבוצת Muxagata בסגל</div><div class="sql-code">SELECT User_ID, User_Name, Current_Budget FROM USERS WHERE User_ID IN (SELECT DISTINCT us.User_ID FROM USER_SQUADS us JOIN PLAYERS p ON us.Player_ID = p.Player_ID WHERE p.Team_Name = 'Muxagata') LIMIT 5;</div><div class="table-title">תוצאת השאילתה (מוגבל ל-5 שורות):</div><div class="no-data">אין נתונים להצגה</div><div class="table-title">תוכנית הרצה (EXPLAIN ANALYZE):</div><div class="explain-block">Limit  (cost=18.91..26.97 rows=1 width=18) (actual time=59.199..59.200 rows=0.00 loops=1)
+  Buffers: shared hit=10
+  ->  Nested Loop  (cost=18.91..26.97 rows=1 width=18) (actual time=59.198..59.200 rows=0.00 loops=1)
+        Buffers: shared hit=10
+        ->  Unique  (cost=18.64..18.64 rows=1 width=4) (actual time=59.198..59.199 rows=0.00 loops=1)
+              Buffers: shared hit=10
+              ->  Sort  (cost=18.64..18.64 rows=1 width=4) (actual time=59.197..59.198 rows=0.00 loops=1)
+                    Sort Key: us.user_id
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=10
+                    ->  Hash Join  (cost=8.30..18.63 rows=1 width=4) (actual time=59.186..59.187 rows=0.00 loops=1)
+                          Hash Cond: (us.player_id = p.player_id)
+                          Buffers: shared hit=7
+                          ->  Seq Scan on user_squads us  (cost=0.00..9.00 rows=500 width=8) (actual time=0.007..0.033 rows=500.00 loops=1)
+                                Buffers: shared hit=4
+                          ->  Hash  (cost=8.29..8.29 rows=1 width=4) (actual time=59.117..59.117 rows=1.00 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                Buffers: shared hit=3
+                                ->  Index Scan using idx_players_team on players p  (cost=0.27..8.29 rows=1 width=4) (actual time=59.110..59.112 rows=1.00 loops=1)
+                                      Index Cond: ((team_name)::text = 'Muxagata'::text)
+                                      Index Searches: 1
+                                      Buffers: shared hit=3
+        ->  Index Scan using users_pkey on users  (cost=0.27..8.29 rows=1 width=18) (never executed)
+              Index Cond: (user_id = us.user_id)
+              Index Searches: 0
+Planning:
+  Buffers: shared hit=49
+Planning Time: 0.257 ms
+Execution Time: 59.220 ms</div></div><div class="card" id="select4b"><div class="card-title">שאילתה 4 גרסה ב' (EXISTS) - מחזיקים שחקן מקבוצת Muxagata בסגל (מומלצת)</div><div class="sql-code">SELECT u.User_ID, u.User_Name, u.Current_Budget FROM USERS u WHERE EXISTS (SELECT 1 FROM USER_SQUADS us JOIN PLAYERS p ON us.Player_ID = p.Player_ID WHERE us.User_ID = u.User_ID AND p.Team_Name = 'Muxagata') LIMIT 5;</div><div class="table-title">תוצאת השאילתה (מוגבל ל-5 שורות):</div><div class="no-data">אין נתונים להצגה</div><div class="table-title">תוכנית הרצה (EXPLAIN ANALYZE):</div><div class="explain-block">Limit  (cost=18.90..19.03 rows=1 width=18) (actual time=0.081..0.082 rows=0.00 loops=1)
+  Buffers: shared hit=7
+  ->  Nested Loop  (cost=18.90..19.03 rows=1 width=18) (actual time=0.080..0.081 rows=0.00 loops=1)
+        Buffers: shared hit=7
+        ->  HashAggregate  (cost=18.63..18.64 rows=1 width=4) (actual time=0.079..0.081 rows=0.00 loops=1)
+              Group Key: us.user_id
+              Batches: 1  Memory Usage: 32kB
+              Buffers: shared hit=7
+              ->  Hash Join  (cost=8.30..18.63 rows=1 width=4) (actual time=0.078..0.080 rows=0.00 loops=1)
+                    Hash Cond: (us.player_id = p.player_id)
+                    Buffers: shared hit=7
+                    ->  Seq Scan on user_squads us  (cost=0.00..9.00 rows=500 width=8) (actual time=0.009..0.037 rows=500.00 loops=1)
+                          Buffers: shared hit=4
+                    ->  Hash  (cost=8.29..8.29 rows=1 width=4) (actual time=0.013..0.013 rows=1.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=3
+                          ->  Index Scan using idx_players_team on players p  (cost=0.27..8.29 rows=1 width=4) (actual time=0.010..0.010 rows=1.00 loops=1)
+                                Index Cond: ((team_name)::text = 'Muxagata'::text)
+                                Index Searches: 1
+                                Buffers: shared hit=3
+        ->  Index Scan using users_pkey on users u  (cost=0.27..0.39 rows=1 width=18) (never executed)
+              Index Cond: (user_id = us.user_id)
+              Index Searches: 0
+Planning:
+  Buffers: shared hit=17 read=1
+Planning Time: 60.315 ms
+Execution Time: 0.118 ms</div></div><div class="card" id="select5"><div class="card-title">שאילתה 5: סיכום נפח עסקאות חודשי ושנתי</div><div class="sql-code">SELECT EXTRACT(YEAR FROM Transaction_Time) as Year, EXTRACT(MONTH FROM Transaction_Time) as Month, COUNT(Transaction_ID) as Total_Transactions, SUM(CASE WHEN Action_Type = 'BUY' THEN Transaction_Price ELSE 0 END) as Total_Buy, SUM(CASE WHEN Action_Type = 'SELL' THEN Transaction_Price ELSE 0 END) as Total_Sell, AVG(Transaction_Price)::NUMERIC(10,2) as Avg_Price FROM TRANSACTIONS GROUP BY EXTRACT(YEAR FROM Transaction_Time), EXTRACT(MONTH FROM Transaction_Time) ORDER BY Year DESC, Month DESC LIMIT 5;</div><div class="table-title">תוצאת השאילתה (מוגבל ל-5 שורות):</div><table><thead><tr><th>year</th><th>month</th><th>total_transactions</th><th>total_buy</th><th>total_sell</th><th>avg_price</th></tr></thead><tbody><tr><td>2026</td><td>6</td><td>33</td><td>148330</td><td>221880</td><td>11218.48</td></tr><tr><td>2026</td><td>5</td><td>129</td><td>815282</td><td>735808</td><td>12023.95</td></tr><tr><td>2026</td><td>4</td><td>136</td><td>847440</td><td>739806</td><td>11670.93</td></tr><tr><td>2026</td><td>3</td><td>119</td><td>750515</td><td>682944</td><td>12045.87</td></tr><tr><td>2026</td><td>2</td><td>115</td><td>615426</td><td>772395</td><td>12068.01</td></tr></tbody></table><div class="table-title">תוכנית הרצה (EXPLAIN ANALYZE):</div><div class="explain-block">Limit  (cost=1590.16..1590.17 rows=5 width=104) (actual time=11.272..11.274 rows=5.00 loops=1)
+  Buffers: shared hit=161
+  ->  Sort  (cost=1590.16..1640.15 rows=19999 width=104) (actual time=11.271..11.271 rows=5.00 loops=1)
+        Sort Key: (EXTRACT(year FROM transaction_time)) DESC, (EXTRACT(month FROM transaction_time)) DESC
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=161
+        ->  HashAggregate  (cost=858.00..1257.98 rows=19999 width=104) (actual time=11.084..11.228 rows=167.00 loops=1)
+              Group Key: EXTRACT(year FROM transaction_time), EXTRACT(month FROM transaction_time)
+              Batches: 1  Memory Usage: 561kB
+              Buffers: shared hit=158
+              ->  Seq Scan on transactions  (cost=0.00..458.00 rows=20000 width=76) (actual time=0.037..5.612 rows=20000.00 loops=1)
+                    Buffers: shared hit=158
+Planning:
+  Buffers: shared hit=24
+Planning Time: 0.113 ms
+Execution Time: 11.610 ms</div></div><div class="card" id="select6"><div class="card-title">שאילתה 6: חמשת השחקנים בעלי תנודתיות המחיר הגבוהה ביותר</div><div class="sql-code">SELECT p.Player_ID, p.First_Name || ' ' || p.Last_Name as Player_Name, p.Team_Name, MAX(ph.Recorded_Price) - MIN(ph.Recorded_Price) as Volatility FROM PLAYERS p JOIN PRICE_HISTORY ph ON p.Player_ID = ph.Player_ID GROUP BY p.Player_ID, p.First_Name, p.Last_Name, p.Team_Name ORDER BY Volatility DESC LIMIT 5;</div><div class="table-title">תוצאת השאילתה (מוגבל ל-5 שורות):</div><table><thead><tr><th>player_id</th><th>player_name</th><th>team_name</th><th>volatility</th></tr></thead><tbody><tr><td>135</td><td>Jerrold Eton</td><td>Busay</td><td>15964</td></tr><tr><td>357</td><td>Galvin Wiltsher</td><td>Medina</td><td>15957</td></tr><tr><td>146</td><td>Imojean Murford</td><td>Embu</td><td>15950</td></tr><tr><td>126</td><td>Karlens Blackburne</td><td>Bulod</td><td>15947</td></tr><tr><td>9</td><td>Sheena Retallick</td><td>Hobonio</td><td>15946</td></tr></tbody></table><div class="table-title">תוכנית הרצה (EXPLAIN ANALYZE):</div><div class="explain-block">Limit  (cost=545.25..545.26 rows=5 width=64) (actual time=7.465..7.468 rows=5.00 loops=1)
+  Buffers: shared hit=114
+  ->  Sort  (cost=545.25..546.50 rows=500 width=64) (actual time=7.464..7.466 rows=5.00 loops=1)
+        Sort Key: ((max(ph.recorded_price) - min(ph.recorded_price))) DESC
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=114
+        ->  HashAggregate  (cost=528.19..536.94 rows=500 width=64) (actual time=7.280..7.374 rows=500.00 loops=1)
+              Group Key: p.player_id
+              Batches: 1  Memory Usage: 105kB
+              Buffers: shared hit=114
+              ->  Hash Join  (cost=16.25..378.19 rows=20000 width=32) (actual time=0.130..4.409 rows=20000.00 loops=1)
+                    Hash Cond: (ph.player_id = p.player_id)
+                    Buffers: shared hit=114
+                    ->  Seq Scan on price_history ph  (cost=0.00..309.00 rows=20000 width=8) (actual time=0.005..0.871 rows=20000.00 loops=1)
+                          Buffers: shared hit=109
+                    ->  Hash  (cost=10.00..10.00 rows=500 width=28) (actual time=0.122..0.122 rows=500.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 38kB
+                          Buffers: shared hit=5
+                          ->  Seq Scan on players p  (cost=0.00..10.00 rows=500 width=28) (actual time=0.005..0.047 rows=500.00 loops=1)
+                                Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=25
+Planning Time: 0.184 ms
+Execution Time: 7.496 ms</div></div><div class="card" id="select7"><div class="card-title">שאילתה 7: משתמשים ששווי הסגל גדול מהתקציב שלהם</div><div class="sql-code">SELECT u.User_ID, u.User_Name, u.Current_Budget as Budget, COALESCE(SUM(p.Current_Price), 0) as Squad_Value FROM USERS u JOIN USER_SQUADS us ON u.User_ID = us.User_ID JOIN PLAYERS p ON us.Player_ID = p.Player_ID GROUP BY u.User_ID, u.User_Name, u.Current_Budget HAVING COALESCE(SUM(p.Current_Price), 0) > u.Current_Budget ORDER BY Squad_Value DESC LIMIT 5;</div><div class="table-title">תוצאת השאילתה (מוגבל ל-5 שורות):</div><table><thead><tr><th>user_id</th><th>user_name</th><th>budget</th><th>squad_value</th></tr></thead><tbody><tr><td>478</td><td>cdiggd9</td><td>30359</td><td>43606</td></tr><tr><td>281</td><td>skirlin7s</td><td>1693</td><td>43486</td></tr><tr><td>153</td><td>hgerrill48</td><td>3925</td><td>38602</td></tr><tr><td>68</td><td>mgreig1v</td><td>16753</td><td>36011</td></tr><tr><td>197</td><td>ashropshire5g</td><td>23032</td><td>33300</td></tr></tbody></table><div class="table-title">תוכנית הרצה (EXPLAIN ANALYZE):</div><div class="explain-block">Limit  (cost=54.67..54.68 rows=5 width=26) (actual time=0.491..0.493 rows=5.00 loops=1)
+  Buffers: shared hit=13
+  ->  Sort  (cost=54.67..55.09 rows=167 width=26) (actual time=0.490..0.492 rows=5.00 loops=1)
+        Sort Key: (COALESCE(sum(p.current_price), '0'::bigint)) DESC
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=13
+        ->  HashAggregate  (cost=45.65..51.90 rows=167 width=26) (actual time=0.459..0.487 rows=15.00 loops=1)
+              Group Key: u.user_id
+              Filter: (COALESCE(sum(p.current_price), '0'::bigint) > u.current_budget)
+              Batches: 1  Memory Usage: 73kB
+              Rows Removed by Filter: 295
+              Buffers: shared hit=13
+              ->  Hash Join  (cost=31.50..43.15 rows=500 width=22) (actual time=0.186..0.379 rows=500.00 loops=1)
+                    Hash Cond: (us.player_id = p.player_id)
+                    Buffers: shared hit=13
+                    ->  Hash Join  (cost=15.25..25.57 rows=500 width=22) (actual time=0.071..0.193 rows=500.00 loops=1)
+                          Hash Cond: (us.user_id = u.user_id)
+                          Buffers: shared hit=8
+                          ->  Seq Scan on user_squads us  (cost=0.00..9.00 rows=500 width=8) (actual time=0.005..0.033 rows=500.00 loops=1)
+                                Buffers: shared hit=4
+                          ->  Hash  (cost=9.00..9.00 rows=500 width=18) (actual time=0.063..0.063 rows=500.00 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 34kB
+                                Buffers: shared hit=4
+                                ->  Seq Scan on users u  (cost=0.00..9.00 rows=500 width=18) (actual time=0.004..0.028 rows=500.00 loops=1)
+                                      Buffers: shared hit=4
+                    ->  Hash  (cost=10.00..10.00 rows=500 width=8) (actual time=0.113..0.113 rows=500.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 28kB
+                          Buffers: shared hit=5
+                          ->  Seq Scan on players p  (cost=0.00..10.00 rows=500 width=8) (actual time=0.007..0.061 rows=500.00 loops=1)
+                                Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=18
+Planning Time: 0.258 ms
+Execution Time: 0.516 ms</div></div><div class="card" id="select8"><div class="card-title">שאילתה 8: השוואת מחיר שחקן לממוצע העמדה שלו</div><div class="sql-code">SELECT p.Player_ID, p.First_Name || ' ' || p.Last_Name as Player_Name, p.Position, p.Current_Price, avg_pos.Avg_Price::NUMERIC(10,2) as Pos_Avg, (p.Current_Price - avg_pos.Avg_Price)::NUMERIC(10,2) as Deviation FROM PLAYERS p JOIN (SELECT Position, AVG(Current_Price) as Avg_Price FROM PLAYERS GROUP BY Position) avg_pos ON p.Position = avg_pos.Position ORDER BY Deviation DESC LIMIT 5;</div><div class="table-title">תוצאת השאילתה (מוגבל ל-5 שורות):</div><table><thead><tr><th>player_id</th><th>player_name</th><th>position</th><th>current_price</th><th>pos_avg</th><th>deviation</th></tr></thead><tbody><tr><td>450</td><td>Corbett Craise</td><td>Defender</td><td>19912</td><td>11579.70</td><td>8332.30</td></tr><tr><td>195</td><td>Stephani MacAllister</td><td>Defender</td><td>19821</td><td>11579.70</td><td>8241.30</td></tr><tr><td>120</td><td>Cinnamon Dolbey</td><td>Defender</td><td>19818</td><td>11579.70</td><td>8238.30</td></tr><tr><td>453</td><td>Bambie Bromfield</td><td>Defender</td><td>19718</td><td>11579.70</td><td>8138.30</td></tr><tr><td>365</td><td>Mallory Spleving</td><td>Defender</td><td>19656</td><td>11579.70</td><td>8076.30</td></tr></tbody></table><div class="table-title">תוכנית הרצה (EXPLAIN ANALYZE):</div><div class="explain-block">Limit  (cost=41.15..41.16 rows=5 width=81) (actual time=0.518..0.520 rows=5.00 loops=1)
+  Buffers: shared hit=10
+  ->  Sort  (cost=41.15..42.40 rows=500 width=81) (actual time=0.518..0.519 rows=5.00 loops=1)
+        Sort Key: ((((p.current_price)::numeric - avg_pos.avg_price))::numeric(10,2)) DESC
+        Sort Method: top-N heapsort  Memory: 25kB
+        Buffers: shared hit=10
+        ->  Hash Join  (cost=12.64..32.84 rows=500 width=81) (actual time=0.141..0.406 rows=500.00 loops=1)
+              Hash Cond: ((p."position")::text = (avg_pos."position")::text)
+              Buffers: shared hit=10
+              ->  Seq Scan on players p  (cost=0.00..10.00 rows=500 width=32) (actual time=0.005..0.029 rows=500.00 loops=1)
+                    Buffers: shared hit=5
+              ->  Hash  (cost=12.59..12.59 rows=4 width=41) (actual time=0.131..0.132 rows=4.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=5
+                    ->  Subquery Scan on avg_pos  (cost=12.50..12.59 rows=4 width=41) (actual time=0.128..0.130 rows=4.00 loops=1)
+                          Buffers: shared hit=5
+                          ->  HashAggregate  (cost=12.50..12.55 rows=4 width=41) (actual time=0.127..0.129 rows=4.00 loops=1)
+                                Group Key: players."position"
+                                Batches: 1  Memory Usage: 32kB
+                                Buffers: shared hit=5
+                                ->  Seq Scan on players  (cost=0.00..10.00 rows=500 width=13) (actual time=0.002..0.030 rows=500.00 loops=1)
+                                      Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=78
+Planning Time: 0.176 ms
+Execution Time: 0.540 ms</div></div><div class="card" id="update1"><div class="card-title">עדכון 1: בונוס תקציב של 10% למשתמשים פעילים (מעל 50 עסקאות)</div><div class="sql-code">UPDATE USERS SET Current_Budget = Current_Budget + LEAST(50000, CAST(Current_Budget * 0.10 AS INT)) WHERE User_ID IN (SELECT User_ID FROM TRANSACTIONS GROUP BY User_ID HAVING COUNT(Transaction_ID) > 50);</div><div class="table-title">נפגעו 32 שורות בעדכון.</div><div class="flex-tables"><div class="flex-table-item"><div class="table-title">לפני העדכון:</div><table><thead><tr><th>user_id</th><th>user_name</th><th>current_budget</th></tr></thead><tbody><tr><td>13</td><td>iblazhevichc</td><td>230700</td></tr><tr><td>35</td><td>hvoulesy</td><td>456345</td></tr><tr><td>49</td><td>sdevenish1c</td><td>145298</td></tr><tr><td>50</td><td>ueronie1d</td><td>143335</td></tr><tr><td>54</td><td>mvalsler1h</td><td>314352</td></tr></tbody></table></div><div class="flex-table-item"><div class="table-title">אחרי העדכון:</div><table><thead><tr><th>user_id</th><th>user_name</th><th>current_budget</th></tr></thead><tbody><tr><td>13</td><td>iblazhevichc</td><td>253770</td></tr><tr><td>35</td><td>hvoulesy</td><td>501980</td></tr><tr><td>49</td><td>sdevenish1c</td><td>159828</td></tr><tr><td>50</td><td>ueronie1d</td><td>157669</td></tr><tr><td>54</td><td>mvalsler1h</td><td>345787</td></tr></tbody></table></div></div></div><div class="card" id="update2"><div class="card-title">עדכון 2: הורדת מחיר שחקנים שלא נקנו ב-5%</div><div class="sql-code">UPDATE PLAYERS SET Current_Price = CAST(Current_Price * 0.95 AS INT) WHERE Player_ID NOT IN (SELECT DISTINCT Player_ID FROM TRANSACTIONS WHERE Action_Type = 'BUY' AND Player_ID IS NOT NULL);</div><div class="table-title">נפגעו 0 שורות בעדכון.</div><div class="flex-tables"><div class="flex-table-item"><div class="table-title">לפני העדכון:</div><div class="no-data">אין נתונים להצגה</div></div><div class="flex-table-item"><div class="table-title">אחרי העדכון:</div><div class="no-data">אין נתונים להצגה</div></div></div></div><div class="card" id="update3"><div class="card-title">עדכון 3: העברת כל שחקני קבוצת 'Kunwi' לספסל (Bench)</div><div class="sql-code">UPDATE USER_SQUADS SET Lineup_Status = 'Bench' WHERE Player_ID IN (SELECT Player_ID FROM PLAYERS WHERE Team_Name = 'Kunwi');</div><div class="table-title">נפגעו 0 שורות בעדכון.</div><div class="flex-tables"><div class="flex-table-item"><div class="table-title">לפני העדכון:</div><div class="no-data">אין נתונים להצגה</div></div><div class="flex-table-item"><div class="table-title">אחרי העדכון:</div><div class="no-data">אין נתונים להצגה</div></div></div></div><div class="card" id="delete1"><div class="card-title">מחיקה 1: מחיקת עסקאות היסטוריות לפני שנת 2015</div><div class="sql-code">DELETE FROM TRANSACTIONS WHERE Transaction_Time < '2015-01-01 00:00:00';</div><div class="table-title">נמחקו 3429 שורות.</div><div class="flex-tables"><div class="flex-table-item"><div class="table-title">לפני המחיקה:</div><table><thead><tr><th>transactions_count</th></tr></thead><tbody><tr><td>3429</td></tr></tbody></table></div><div class="flex-table-item"><div class="table-title">אחרי המחיקה:</div><table><thead><tr><th>transactions_count</th></tr></thead><tbody><tr><td>0</td></tr></tbody></table></div></div></div><div class="card" id="delete2"><div class="card-title">מחיקה 2: מחיקת משתמשים לא פעילים (תקציב 0 ש"ח וללא שחקנים בסגל)</div><div class="sql-code">DELETE FROM USERS WHERE Current_Budget = 0 AND User_ID NOT IN (SELECT DISTINCT User_ID FROM USER_SQUADS);</div><div class="table-title">נמחקו 0 שורות.</div><div class="flex-tables"><div class="flex-table-item"><div class="table-title">לפני המחיקה:</div><table><thead><tr><th>inactive_users_count</th></tr></thead><tbody><tr><td>0</td></tr></tbody></table></div><div class="flex-table-item"><div class="table-title">אחרי המחיקה:</div><table><thead><tr><th>inactive_users_count</th></tr></thead><tbody><tr><td>0</td></tr></tbody></table></div></div></div><div class="card" id="delete3"><div class="card-title">מחיקה 3: מחיקת היסטוריית מחירי שחקנים של סבבים שהסתיימו לפני שנת 2015</div><div class="sql-code">DELETE FROM PRICE_HISTORY WHERE Round_ID IN (SELECT Round_ID FROM ROUNDS WHERE Status = 'Completed' AND End_Date < '2015-01-01 00:00:00');</div><div class="table-title">נמחקו 4909 שורות.</div><div class="flex-tables"><div class="flex-table-item"><div class="table-title">לפני המחיקה:</div><table><thead><tr><th>old_history_count</th></tr></thead><tbody><tr><td>4909</td></tr></tbody></table></div><div class="flex-table-item"><div class="table-title">אחרי המחיקה:</div><table><thead><tr><th>old_history_count</th></tr></thead><tbody><tr><td>0</td></tr></tbody></table></div></div></div><div class="card" id="constraint1"><div class="card-title">אילוץ 1 (chk_user_name_len) - אורך שם משתמש >= 3 תווים</div><div class="sql-code">INSERT INTO USERS (User_ID, User_Name, Current_Budget) VALUES (9999, 'ab', 100000);</div><div class="table-title">שגיאת האילוץ שהתקבלה ממסד הנתונים:</div><div class="error-block">new row for relation "users" violates check constraint "chk_user_name_len"</div></div><div class="card" id="constraint2"><div class="card-title">אילוץ 2 (chk_tx_time_past) - תאריך עסקה אינו בעתיד</div><div class="sql-code">INSERT INTO TRANSACTIONS (Transaction_ID, Transaction_Time, Action_Type, Transaction_Price, User_ID, Player_ID) VALUES (99999, NOW() + INTERVAL '1 day', 'BUY', 5000, 1, 1);</div><div class="table-title">שגיאת האילוץ שהתקבלה ממסד הנתונים:</div><div class="error-block">new row for relation "transactions" violates check constraint "chk_tx_time_past"</div></div><div class="card" id="constraint3"><div class="card-title">אילוץ 3 (uq_user_player) - מניעת כפילות שחקן בסגל של אותו משתמש</div><div class="sql-code">INSERT INTO USER_SQUADS (Squad_Record_ID, Lineup_Status, User_ID, Player_ID) VALUES (99999, 'Bench', 1, 1);</div><div class="table-title">שגיאת האילוץ שהתקבלה ממסד הנתונים:</div><div class="error-block"></div></div><div class="card" id="tx_rollback"><div class="card-title">הדגמת בקרת טרנזקציות - ROLLBACK (ביטול שינויים)</div><div class="flex-tables"><div class="flex-table-item"><div class="table-title">1. מצב התחלתי:</div><table><thead><tr><th>user_id</th><th>user_name</th><th>current_budget</th></tr></thead><tbody><tr><td>1</td><td>mdriussi0</td><td>303891</td></tr></tbody></table></div><div class="flex-table-item"><div class="table-title">2. בתוך הטרנזקציה (לאחר ה-UPDATE):</div><table><thead><tr><th>user_id</th><th>user_name</th><th>current_budget</th></tr></thead><tbody><tr><td>1</td><td>mdriussi0</td><td>403891</td></tr></tbody></table></div><div class="flex-table-item"><div class="table-title">3. מצב סופי (לאחר ROLLBACK/COMMIT):</div><table><thead><tr><th>user_id</th><th>user_name</th><th>current_budget</th></tr></thead><tbody><tr><td>1</td><td>mdriussi0</td><td>303891</td></tr></tbody></table></div></div></div><div class="card" id="tx_commit"><div class="card-title">הדגמת בקרת טרנזקציות - COMMIT (שמירת שינויים)</div><div class="flex-tables"><div class="flex-table-item"><div class="table-title">1. מצב התחלתי:</div><table><thead><tr><th>user_id</th><th>user_name</th><th>current_budget</th></tr></thead><tbody><tr><td>1</td><td>mdriussi0</td><td>303891</td></tr></tbody></table></div><div class="flex-table-item"><div class="table-title">2. בתוך הטרנזקציה (לאחר ה-UPDATE):</div><table><thead><tr><th>user_id</th><th>user_name</th><th>current_budget</th></tr></thead><tbody><tr><td>1</td><td>mdriussi0</td><td>353891</td></tr></tbody></table></div><div class="flex-table-item"><div class="table-title">3. מצב סופי (לאחר ROLLBACK/COMMIT):</div><table><thead><tr><th>user_id</th><th>user_name</th><th>current_budget</th></tr></thead><tbody><tr><td>1</td><td>mdriussi0</td><td>353891</td></tr></tbody></table></div></div></div>
+  </div>
+</body>
+</html>

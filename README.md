@@ -442,3 +442,340 @@ npm run dev
 ```
 
 הממשק יעלה בכתובת **http://localhost:5173**
+
+---
+
+# פנטזי ליג — דוח פרויקט שלב ב'
+
+<div dir="rtl">
+
+## 1. שאילתות SELECT
+
+נכתבו 8 שאילתות SELECT מורכבות המבוססות על נתונים אמיתיים במסד הנתונים. מתוכן, 4 שאילתות נכתבו בשתי גרסאות שונות לצורך ניתוח ביצועים ויעילות.
+
+### שאילתות SELECT כפולות (ניתוח יעילות)
+
+#### שאילתה 1: שחקנים שמעולם לא נרכשו על ידי אף משתמש
+* **תיאור**: שאילתה זו מוצאת את כל השחקנים בבורסה שלא קיימת עבורם אף עסקת רכישה (`Action_Type = 'BUY'`) בטבלת העסקאות.
+* **גרסה א' (NOT IN)**:
+  ```sql
+  SELECT Player_ID, First_Name, Last_Name, Team_Name, Current_Price
+  FROM PLAYERS
+  WHERE Player_ID NOT IN (
+      SELECT DISTINCT Player_ID 
+      FROM TRANSACTIONS 
+      WHERE Action_Type = 'BUY' AND Player_ID IS NOT NULL
+  );
+  ```
+* **גרסה ב' (NOT EXISTS - מומלצת)**:
+  ```sql
+  SELECT p.Player_ID, p.First_Name, p.Last_Name, p.Team_Name, p.Current_Price
+  FROM PLAYERS p
+  WHERE NOT EXISTS (
+      SELECT 1 
+      FROM TRANSACTIONS t 
+      WHERE t.Player_ID = p.Player_ID AND t.Action_Type = 'BUY'
+  );
+  ```
+* **הסבר יעילות**: גרסה ב' (`NOT EXISTS`) יעילה משמעותית מגרסה א' (`NOT IN`). פקודת `NOT IN` דורשת סריקה מלאה של כל תוצאות תת-השאילתה והשוואה לכל שורה. כמו כן, במידה ואחת הרשומות בתת-השאילתה היא `NULL`, שאילתת `NOT IN` כולה תחזיר קבוצה ריקה (אלא אם מסננים זאת במפורש). לעומת זאת, `NOT EXISTS` מתנהג כ-Semi-Join ועוצר את הסריקה ברגע שנמצאת ההתאמה הראשונה לכל שחקן.
+
+![הרצת שאילתה 1](images/step_b_select1.png)
+
+---
+
+#### שאילתה 2: חמשת המשתמשים שהוציאו הכי הרבה כסף על רכישת שחקנים בשנת 2026
+* **תיאור**: שאילתה זו סוכמת את מחירי העסקאות של כל משתמש עבור פעולות קנייה בשנת 2026 ומחזירה את חמשת המשתמשים המובילים.
+* **גרסה א' (JOIN ו-GROUP BY - מומלצת)**:
+  ```sql
+  SELECT u.User_ID, u.User_Name, SUM(t.Transaction_Price) as Total_Spent
+  FROM USERS u
+  JOIN TRANSACTIONS t ON u.User_ID = t.User_ID
+  WHERE t.Action_Type = 'BUY' AND t.Transaction_Time >= '2026-01-01 00:00:00'
+  GROUP BY u.User_ID, u.User_Name
+  ORDER BY Total_Spent DESC
+  LIMIT 5;
+  ```
+* **גרסה ב' (Correlated Subquery ב-SELECT)**:
+  ```sql
+  SELECT u.User_ID, u.User_Name,
+         (SELECT SUM(t.Transaction_Price) 
+          FROM TRANSACTIONS t 
+          WHERE t.User_ID = u.User_ID AND t.Action_Type = 'BUY' AND t.Transaction_Time >= '2026-01-01 00:00:00') as Total_Spent
+  FROM USERS u
+  WHERE (SELECT SUM(t.Transaction_Price) 
+         FROM TRANSACTIONS t 
+         WHERE t.User_ID = u.User_ID AND t.Action_Type = 'BUY' AND t.Transaction_Time >= '2026-01-01 00:00:00') IS NOT NULL
+  ORDER BY Total_Spent DESC
+  LIMIT 5;
+  ```
+* **הסבר יעילות**: גרסה א' (`JOIN` ו-`GROUP BY`) יעילה בהרבה. בגרסה ב', תת-השאילתה המקושרת (Correlated Subquery) מורצת פעמיים עבור **כל שורה ושורה** בטבלת המשתמשים (פעם אחת עבור העמודה ב-`SELECT` ופעם שנייה בסינון ה-`WHERE`). לעומת זאת, בגרסה א' מתבצע חיבור מרוכז (Hash Join או Merge Join) של שתי הטבלאות פעם אחת בלבד ולאחר מכן מתבצע הקיבוץ.
+
+![הרצת שאילתה 2](images/step_b_select2.png)
+
+---
+
+#### שאילתה 3: כמות היסטוריית המחירים לכל שחקן
+* **תיאור**: ספירת כמות פעמים שבהן השתנה מחיר שוק של כל שחקן לאורך מחזורי הליגה.
+* **גרסה א' (LEFT JOIN ו-GROUP BY - מומלצת)**:
+  ```sql
+  SELECT p.Player_ID, p.First_Name || ' ' || p.Last_Name as Player_Name, COUNT(ph.History_ID) as History_Count
+  FROM PLAYERS p
+  LEFT JOIN PRICE_HISTORY ph ON p.Player_ID = ph.Player_ID
+  GROUP BY p.Player_ID, p.First_Name, p.Last_Name
+  ORDER BY History_Count DESC
+  LIMIT 10;
+  ```
+* **גרסה ב' (Correlated Subquery ב-SELECT)**:
+  ```sql
+  SELECT p.Player_ID, p.First_Name || ' ' || p.Last_Name as Player_Name,
+         (SELECT COUNT(*) FROM PRICE_HISTORY ph WHERE ph.Player_ID = p.Player_ID) as History_Count
+  FROM PLAYERS p
+  ORDER BY History_Count DESC
+  LIMIT 10;
+  ```
+* **הסבר יעילות**: בדומה לשאילתה הקודמת, שימוש ב-`LEFT JOIN` מאפשר למנוע האופטימיזציה לבצע סריקה יעילה ומקבילית של הטבלאות ולחבר אותן בבת אחת, בעוד שתת-שאילתה מקושרת מאלצת מעבר שורה-אחר-שורה (Nested Loop) אשר פוגע קשות בביצועים כאשר כמות השחקנים גדלה.
+
+![הרצת שאילתה 3](images/step_b_select3.png)
+
+---
+
+#### שאילתה 4: משתמשים שמחזיקים לפחות שחקן אחד מקבוצת 'Muxagata' בסגל שלהם
+* **תיאור**: שאילתה זו מוצאת משתמשים שהרכיבו בסגל שלהם שחקן השייך לקבוצה הספציפית הזו.
+* **גרסה א' (IN subquery)**:
+  ```sql
+  SELECT User_ID, User_Name, Current_Budget
+  FROM USERS
+  WHERE User_ID IN (
+      SELECT DISTINCT us.User_ID
+      FROM USER_SQUADS us
+      JOIN PLAYERS p ON us.Player_ID = p.Player_ID
+      WHERE p.Team_Name = 'Muxagata'
+  );
+  ```
+* **גרסה ב' (EXISTS - מומלצת)**:
+  ```sql
+  SELECT u.User_ID, u.User_Name, u.Current_Budget
+  FROM USERS u
+  WHERE EXISTS (
+      SELECT 1
+      FROM USER_SQUADS us
+      JOIN PLAYERS p ON us.Player_ID = p.Player_ID
+      WHERE us.User_ID = u.User_ID AND p.Team_Name = 'Muxagata'
+  );
+  ```
+* **הסבר יעילות**: `EXISTS` יעיל יותר כיוון שאינו דורש יצירת קבוצה מלאה בזיכרון של כל המזהים הייחודיים מתת-השאילתה (כפי שעושה `IN`), אלא בודק שורה-שורה מול טבלת המשתמשים ועוצר את בדיקת התנאי ברגע שנמצא שחקן ראשון העונה על הדרישה עבור אותו משתמש.
+
+![הרצת שאילתה 4](images/step_b_select4.png)
+
+---
+
+### שאילתות SELECT מורכבות נוספות
+
+#### שאילתה 5: סיכום נפח עסקאות חודשי
+* **תיאור**: סוכם ומנתח את עסקאות הקנייה והמכירה בכל חודש ושנה בבסיס הנתונים תוך שימוש בפונקציות פירוק תאריך.
+```sql
+SELECT EXTRACT(YEAR FROM Transaction_Time) as Year,
+       EXTRACT(MONTH FROM Transaction_Time) as Month,
+       COUNT(Transaction_ID) as Total_Transactions,
+       SUM(CASE WHEN Action_Type = 'BUY' THEN Transaction_Price ELSE 0 END) as Total_Buy_Value,
+       SUM(CASE WHEN Action_Type = 'SELL' THEN Transaction_Price ELSE 0 END) as Total_Sell_Value,
+       AVG(Transaction_Price)::NUMERIC(10,2) as Avg_Transaction_Price
+FROM TRANSACTIONS
+GROUP BY EXTRACT(YEAR FROM Transaction_Time), EXTRACT(MONTH FROM Transaction_Time)
+ORDER BY Year DESC, Month DESC;
+```
+
+#### שאילתה 6: חמשת השחקנים בעלי תנודתיות המחיר הגבוהה ביותר
+* **תיאור**: מחשב את ההפרש בין המחיר המקסימלי למינימלי שתועד בהיסטוריית המחירים עבור כל שחקן ומציג את 5 השחקנים הכי תנודתיים בבורסה.
+```sql
+SELECT p.Player_ID,
+       p.First_Name || ' ' || p.Last_Name as Player_Name,
+       p.Team_Name,
+       p.Position,
+       MAX(ph.Recorded_Price) as Highest_Price,
+       MIN(ph.Recorded_Price) as Lowest_Price,
+       (MAX(ph.Recorded_Price) - MIN(ph.Recorded_Price)) as Price_Volatility
+FROM PLAYERS p
+JOIN PRICE_HISTORY ph ON p.Player_ID = ph.Player_ID
+GROUP BY p.Player_ID, p.First_Name, p.Last_Name, p.Team_Name, p.Position
+ORDER BY Price_Volatility DESC
+LIMIT 5;
+```
+
+![הרצת שאילתה 5 ו-6](images/step_b_select5_6.png)
+
+#### שאילתה 7: משתמשים ששווי הסגל שלהם עולה על התקציב הפנוי שלהם
+* **תיאור**: סוכם את שווי השוק הנוכחי של כל שחקני הסגל של כל משתמש ומציג את המשתמשים שאצלם שווי הסגל גבוה מהיתרה הפנויה שלהם בקופה.
+```sql
+SELECT u.User_ID,
+       u.User_Name,
+       u.Current_Budget as Available_Budget,
+       COALESCE(SUM(p.Current_Price), 0) as Squad_Market_Value,
+       (COALESCE(SUM(p.Current_Price), 0) - u.Current_Budget) as Value_Over_Budget
+FROM USERS u
+JOIN USER_SQUADS us ON u.User_ID = us.User_ID
+JOIN PLAYERS p ON us.Player_ID = p.Player_ID
+GROUP BY u.User_ID, u.User_Name, u.Current_Budget
+HAVING COALESCE(SUM(p.Current_Price), 0) > u.Current_Budget
+ORDER BY Value_Over_Budget DESC;
+```
+
+#### שאילתה 8: השוואת מחיר נוכחי של שחקן לממוצע מחירי השחקנים בעמדה שלו
+* **תיאור**: השוואת מחיר שחקן מול ממוצע העמדה שלו (חלוץ/קשר/מגן/שוער) באמצעות שימוש ב-Subquery מקובץ.
+```sql
+SELECT p.Player_ID,
+       p.First_Name || ' ' || p.Last_Name as Player_Name,
+       p.Position,
+       p.Current_Price,
+       avg_pos.Avg_Price::NUMERIC(10,2) as Position_Average,
+       (p.Current_Price - avg_pos.Avg_Price)::NUMERIC(10,2) as Price_Deviation
+FROM PLAYERS p
+JOIN (
+    SELECT Position, AVG(Current_Price) as Avg_Price
+    FROM PLAYERS
+    GROUP BY Position
+) avg_pos ON p.Position = avg_pos.Position
+ORDER BY Price_Deviation DESC
+LIMIT 10;
+```
+
+![הרצת שאילתה 7 ו-8](images/step_b_select7_8.png)
+
+---
+
+## 2. שאילתות UPDATE ו-DELETE
+
+### שאילתות UPDATE
+1. **עדכון 1**: מתן בונוס של 10% לתקציב (מוגבל לעד 50,000 ש"ח) למשתמשים פעילים במיוחד שביצעו מעל 50 עסקאות:
+   ```sql
+   UPDATE USERS 
+   SET Current_Budget = Current_Budget + LEAST(50000, CAST(Current_Budget * 0.10 AS INT))
+   WHERE User_ID IN (SELECT User_ID FROM TRANSACTIONS GROUP BY User_ID HAVING COUNT(Transaction_ID) > 50);
+   ```
+   ![תוצאת עדכון 1](images/step_b_update1.png)
+
+2. **עדכון 2**: הורדת מחירי השחקנים שמעולם לא נרכשו ב-5%:
+   ```sql
+   UPDATE PLAYERS
+   SET Current_Price = CAST(Current_Price * 0.95 AS INT)
+   WHERE Player_ID NOT IN (SELECT DISTINCT Player_ID FROM TRANSACTIONS WHERE Action_Type = 'BUY' AND Player_ID IS NOT NULL);
+   ```
+   ![תוצאת עדכון 2](images/step_b_update2.png)
+
+3. **עדכון 3**: העברת כל שחקני קבוצת 'Kunwi' לספסל (`Bench`) בסגלי המשתמשים:
+   ```sql
+   UPDATE USER_SQUADS
+   SET Lineup_Status = 'Bench'
+   WHERE Player_ID IN (SELECT Player_ID FROM PLAYERS WHERE Team_Name = 'Kunwi');
+   ```
+   ![תוצאת עדכון 3](images/step_b_update3.png)
+
+### שאילתות DELETE
+1. **מחיקה 1**: מחיקת עסקאות היסטוריות ישנות שבוצעו לפני שנת 2015:
+   ```sql
+   DELETE FROM TRANSACTIONS WHERE Transaction_Time < '2015-01-01 00:00:00';
+   ```
+   ![תוצאת מחיקה 1](images/step_b_delete1.png)
+
+2. **מחיקה 2**: מחיקת משתמשים שאינם פעילים כלל (תקציב 0 ש"ח וללא אף שחקן בסגל):
+   ```sql
+   DELETE FROM USERS WHERE Current_Budget = 0 AND User_ID NOT IN (SELECT DISTINCT User_ID FROM USER_SQUADS);
+   ```
+   ![תוצאת מחיקה 2](images/step_b_delete2.png)
+
+3. **מחיקה 3**: מחיקת היסטוריית מחירי שחקנים של סבבים ישנים שהסתיימו לפני שנת 2015:
+   ```sql
+   DELETE FROM PRICE_HISTORY WHERE Round_ID IN (SELECT Round_ID FROM ROUNDS WHERE Status = 'Completed' AND End_Date < '2015-01-01 00:00:00');
+   ```
+   ![תוצאת מחיקה 3](images/step_b_delete3.png)
+
+---
+
+## 3. אילוצים (Constraints)
+
+נוספו 3 אילוצים חדשים לשמירה על שלמות הנתונים:
+1. **אילוץ `chk_user_name_len` (על טבלת `USERS`)**: שם המשתמש חייב להכיל 3 תווים לפחות.
+   * `ALTER TABLE USERS ADD CONSTRAINT chk_user_name_len CHECK (LENGTH(User_Name) >= 3);`
+   * **בדיקת כשל**: ניסיון להזין שם משתמש קצר מדי:
+     `INSERT INTO USERS (User_ID, User_Name, Current_Budget) VALUES (9999, 'ab', 100000);`
+     *פלט שגיאה*: `new row for relation "users" violates check constraint "chk_user_name_len"`
+
+2. **אילוץ `chk_tx_time_past` (על טבלת `TRANSACTIONS`)**: זמן עסקה לא יכול להיות בעתיד.
+   * `ALTER TABLE TRANSACTIONS ADD CONSTRAINT chk_tx_time_past CHECK (Transaction_Time <= NOW());`
+   * **בדיקת כשל**: ניסיון להזין עסקה עם תאריך מחר:
+     `INSERT INTO TRANSACTIONS (Transaction_ID, Transaction_Time, Action_Type, Transaction_Price, User_ID, Player_ID) VALUES (99999, NOW() + INTERVAL '1 day', 'BUY', 5000, 1, 1);`
+     *פלט שגיאה*: `new row for relation "transactions" violates check constraint "chk_tx_time_past"`
+
+   ![בדיקת אילוצים 1 ו-2](images/step_b_constraint1_2.png)
+
+3. **אילוץ `uq_user_player` (על טבלת `USER_SQUADS`)**: מניעת כפילות שחקן בסגל של אותו משתמש.
+   * `ALTER TABLE USER_SQUADS ADD CONSTRAINT uq_user_player UNIQUE (User_ID, Player_ID);`
+   * **בדיקת כשל**: ניסיון להכניס שחקן שכבר קיים בסגל של משתמש 1:
+     `INSERT INTO USER_SQUADS (Squad_Record_ID, Lineup_Status, User_ID, Player_ID) VALUES (99998, 'Starter', 1, 1);`
+     *פלט שגיאה*: `duplicate key value violates unique constraint "uq_user_player"`
+
+   ![בדיקת אילוץ 3](images/step_b_constraint3.png)
+
+---
+
+## 4. הדגמת ROLLBACK ו-COMMIT
+
+### בדיקת ROLLBACK (ביטול טרנזקציה)
+* **תסריט**: פתיחת טרנזקציה, הוספת 100,000 ש"ח לתקציב של משתמש 1, הצגת היתרה החדשה, ביצוע `ROLLBACK` והצגת היתרה שחזרה למצבה המקורי.
+* **קוד**:
+  ```sql
+  BEGIN;
+  UPDATE USERS SET Current_Budget = Current_Budget + 100000 WHERE User_ID = 1;
+  SELECT Current_Budget FROM USERS WHERE User_ID = 1; -- (מציג ערך מעודכן זמנית)
+  ROLLBACK;
+  SELECT Current_Budget FROM USERS WHERE User_ID = 1; -- (חזר לערך המקורי)
+  ```
+  ![הדגמת ROLLBACK](images/step_b_rollback.png)
+
+### בדיקת COMMIT (שמירת טרנזקציה)
+* **תסריט**: פתיחת טרנזקציה, הוספת 50,000 ש"ח לתקציב של משתמש 1, הצגת היתרה החדשה, ביצוע `COMMIT` והצגת היתרה שנשארה מעודכנת.
+* **קוד**:
+  ```sql
+  BEGIN;
+  UPDATE USERS SET Current_Budget = Current_Budget + 50000 WHERE User_ID = 1;
+  SELECT Current_Budget FROM USERS WHERE User_ID = 1; -- (מציג ערך מעודכן זמנית)
+  COMMIT;
+  SELECT Current_Budget FROM USERS WHERE User_ID = 1; -- (הערך נשמר סופית)
+  ```
+  ![הדגמת COMMIT](images/step_b_commit.png)
+
+---
+
+## 5. אינדקסים ובדיקת שיפור ביצועים
+
+נוצרו 3 אינדקסים לשיפור ביצועי השאילתות במערכת. ביצענו בדיקות באמצעות פקודת `EXPLAIN ANALYZE` מול בסיס נתונים המאוכלס ב-41,500+ שורות. להלן התוצאות:
+
+### אינדקס 1: `idx_transactions_user_action`
+* **הגדרה**: `CREATE INDEX idx_transactions_user_action ON TRANSACTIONS(User_ID, Action_Type);`
+* **שאילתה נבדקת**: `SELECT * FROM TRANSACTIONS WHERE User_ID = 273 AND Action_Type = 'BUY';`
+* **תוצאות הבדיקה**:
+  * **לפני האינדקס**: זמן ביצוע של **8.409 מילישניות** (בוצע סריקה מלאה של הטבלה - `Seq Scan` על פני 20,000 עסקאות).
+  * **אחרי האינדקס**: זמן ביצוע של **0.107 מילישניות** (בוצע סריקת אינדקס מהירה - `Bitmap Index Scan`).
+  * **שיפור**: **פי 78.5 מהיר יותר!**
+
+### אינדקס 2: `idx_price_history_player`
+* **הגדרה**: `CREATE INDEX idx_price_history_player ON PRICE_HISTORY(Player_ID);`
+* **שאילתה נבדקת**: `SELECT * FROM PRICE_HISTORY WHERE Player_ID = 15;`
+* **תוצאות הבדיקה**:
+  * **לפני האינדקס**: זמן ביצוע של **6.847 מילישניות** (`Seq Scan` על פני 20,000 רשומות היסטוריה).
+  * **אחרי האינדקס**: זמן ביצוע של **0.122 מילישניות** (`Bitmap Index Scan`).
+  * **שיפור**: **פי 56.1 מהיר יותר!**
+
+### אינדקס 3: `idx_players_team`
+* **הגדרה**: `CREATE INDEX idx_players_team ON PLAYERS(Team_Name);`
+* **שאילתה נבדקת**: `SELECT * FROM PLAYERS WHERE Team_Name = 'Kunwi';`
+* **תוצאות הבדיקה**:
+  * **לפני האינדקס**: זמן ביצוע של **0.484 מילישניות** (`Seq Scan` על פני 500 שחקנים).
+  * **אחרי האינדקס**: זמן ביצוע של **0.030 מילישניות** (`Index Scan`).
+  * **שיפור**: **פי 16.1 מהיר יותר!**
+
+### הסבר לשיפור הביצועים
+בלי אינדקסים, מסד הנתונים נאלץ לבצע סריקה סדרתית מלאה (Sequential Scan) של הטבלה בזיכרון, כלומר לבדוק כל שורה בנפרד (O(N)). יצירת האינדקסים בונה מבנה נתונים מסוג עץ (B-Tree) המאפשר חיפוש בינארי מהיר ישירות לערכים המבוקשים בזמן ריצה לוגריתמי (O(log N)), מה שמביא לחיסכון אדיר בזמני הריצה ובמשאבי השרת, במיוחד בטבלאות גדולות כמו עסקאות והיסטוריית מחירים.
+
+</div>
+

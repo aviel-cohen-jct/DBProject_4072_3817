@@ -1,58 +1,90 @@
-import React, { useState, useMemo } from 'react';
-
-// --- INITIAL DUMMY DATA ---
-const INITIAL_PLAYERS = [
-  { id: 1, name: 'אוסקר גלוך', team: 'רד בול זלצבורג', position: 'קשר', price: 850000, change: 5.4, stats: { goals: 8, assists: 12, matches: 28, rating: 8.1 }, history: [810000, 815000, 830000, 825000, 840000, 835000, 850000], img: '⚽' },
-  { id: 2, name: 'מנור סולומון', team: 'לידס יונייטד', position: 'קשר', price: 720000, change: -1.2, stats: { goals: 4, assists: 5, matches: 15, rating: 7.2 }, history: [740000, 735000, 730000, 725000, 728000, 722000, 720000], img: '🏃‍♂️' },
-  { id: 3, name: 'ערן זהבי', team: 'מכבי תל אביב', position: 'חלוץ', price: 450000, change: 2.1, stats: { goals: 19, assists: 3, matches: 30, rating: 7.8 }, history: [435000, 440000, 438000, 442000, 445000, 448000, 450000], img: '🔥' },
-  { id: 4, name: 'ענאן חלאילי', team: 'סן ז׳ילואז', position: 'חלוץ', price: 580000, change: 4.2, stats: { goals: 11, assists: 6, matches: 26, rating: 7.9 }, history: [540000, 550000, 555000, 562000, 570000, 575000, 580000], img: '⚡' },
-  { id: 5, name: 'דניאל פרץ', team: 'באיירן מינכן', position: 'שוער', price: 390000, change: -0.5, stats: { goals: 0, assists: 0, matches: 8, rating: 7.1 }, history: [395000, 394000, 392000, 393000, 391000, 390000, 390000], img: '🧤' },
-  { id: 6, name: 'ליאל עבדה', team: 'שארלוט', position: 'חלוץ', price: 520000, change: 1.8, stats: { goals: 7, assists: 4, matches: 20, rating: 7.4 }, history: [510000, 505000, 508000, 512000, 515000, 518000, 520000], img: '🎯' },
-  { id: 7, name: 'מוחמד אבו פאני', team: 'פרנצווארוש', position: 'קשר', price: 350000, change: 0.9, stats: { goals: 5, assists: 9, matches: 29, rating: 7.6 }, history: [342000, 345000, 344000, 346000, 348000, 347000, 350000], img: '💪' },
-  { id: 8, name: 'שגיב יחזקאל', team: 'מכבי תל אביב', position: 'מגן', price: 310000, change: 3.0, stats: { goals: 3, assists: 5, matches: 22, rating: 7.3 }, history: [298000, 301000, 302000, 305000, 307000, 309000, 310000], img: '🛡️' },
-  { id: 9, name: 'עומרי גלזר', team: 'הכוכב האדום', position: 'שוער', price: 340000, change: 2.5, stats: { goals: 0, assists: 1, matches: 32, rating: 7.7 }, history: [328000, 331000, 330000, 333000, 335000, 338000, 340000], img: '🧤' },
-  { id: 10, name: 'דור פרץ', team: 'מכבי תל אביב', position: 'קשר', price: 290000, change: -1.5, stats: { goals: 6, assists: 4, matches: 27, rating: 7.2 }, history: [298000, 296000, 295000, 294000, 291000, 292000, 290000], img: '🧠' },
-  { id: 11, name: 'גדי קינדה', team: 'מכבי חיפה', position: 'קשר', price: 270000, change: 0.2, stats: { goals: 4, assists: 3, matches: 18, rating: 7.0 }, history: [268000, 269000, 268000, 271000, 270000, 269000, 270000], img: '🎩' },
-  { id: 12, name: 'רועי גורדנה', team: 'הפועל באר שבע', position: 'קשר', price: 180000, change: -0.8, stats: { goals: 2, assists: 2, matches: 24, rating: 6.9 }, history: [183000, 182000, 181000, 182000, 180000, 181000, 180000], img: '⚓' },
-  { id: 13, name: 'סתיו למקין', team: 'מכבי תל אביב', position: 'מגן', price: 210000, change: -1.1, stats: { goals: 1, assists: 0, matches: 12, rating: 6.8 }, history: [214000, 213000, 212000, 211000, 210000, 212000, 210000], img: '🛡️' },
-  { id: 14, name: 'אילי מדמון', team: 'הפועל ירושלים', position: 'קשר', price: 140000, change: 0.0, stats: { goals: 1, assists: 2, matches: 19, rating: 6.7 }, history: [140000, 140000, 139000, 140000, 141000, 140000, 140000], img: '✨' },
-  { id: 15, name: 'רוי רביבו', team: 'מכבי תל אביב', position: 'מגן', price: 250000, change: 1.2, stats: { goals: 2, assists: 4, matches: 25, rating: 7.1 }, history: [245000, 246000, 248000, 247000, 249000, 248000, 250000], img: '🏃‍♂️' }
-];
-
-const INITIAL_PORTFOLIO = [
-  { playerId: 1, boughtPrice: 820000, quantity: 1 },
-  { playerId: 3, boughtPrice: 430000, quantity: 2 },
-  { playerId: 5, boughtPrice: 395000, quantity: 1 },
-  { playerId: 7, boughtPrice: 340000, quantity: 2 },
-  { playerId: 8, boughtPrice: 300000, quantity: 3 },
-  { playerId: 11, boughtPrice: 265000, quantity: 2 },
-  { playerId: 12, boughtPrice: 185000, quantity: 1 },
-  { playerId: 15, boughtPrice: 240000, quantity: 3 }
-]; // Totaling 15 units of different players representing the user's base squad.
-
-const INITIAL_TRANSACTIONS = [
-  { id: 1, type: 'buy', playerName: 'אוסקר גלוך', quantity: 1, price: 820000, timestamp: '03/06/2026, 10:15' },
-  { id: 2, type: 'buy', playerName: 'ערן זהבי', quantity: 2, price: 430000, timestamp: '02/06/2026, 14:30' },
-  { id: 3, type: 'sell', playerName: 'מנור סולומון', quantity: 1, price: 735000, timestamp: '01/06/2026, 09:12' }
-];
+import React, { useState, useMemo, useEffect } from 'react';
 
 export default function SportexApp() {
   const [activeTab, setActiveTab] = useState('market'); // market | profile | portfolio | transactions
-  const [players, setPlayers] = useState(INITIAL_PLAYERS);
-  const [selectedPlayerId, setSelectedPlayerId] = useState(1);
+  const [users, setUsers] = useState<any[]>([]);
+  const [currentUserId, setCurrentUserId] = useState<number>(1);
+  const [players, setPlayers] = useState<any[]>([]);
+  const [selectedPlayerId, setSelectedPlayerId] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [positionFilter, setPositionFilter] = useState('הכל');
   
   // Wallet state
-  const [balance, setBalance] = useState(4850000); // 4.85 Million NIS
-  const [portfolio, setPortfolio] = useState(INITIAL_PORTFOLIO);
-  const [transactions, setTransactions] = useState(INITIAL_TRANSACTIONS);
-  const [tradeQuantity, setTradeQuantity] = useState(1);
+  const [balance, setBalance] = useState(0);
+  const [portfolio, setPortfolio] = useState<any[]>([]);
+  const [transactions, setTransactions] = useState<any[]>([]);
   const [tradeMessage, setTradeMessage] = useState({ text: '', type: '' });
+  const [loading, setLoading] = useState(true);
+
+  // Helper fetching functions
+  const fetchUsers = async () => {
+    try {
+      const res = await fetch('/api/users');
+      const data = await res.json();
+      setUsers(data);
+      if (data.length > 0) {
+        const hasUser1 = data.find((u: any) => u.id === 1);
+        setCurrentUserId(hasUser1 ? 1 : data[0].id);
+      }
+    } catch (err) {
+      console.error('Error fetching users:', err);
+    }
+  };
+
+  const fetchPlayers = async () => {
+    try {
+      const res = await fetch('/api/players');
+      const data = await res.json();
+      setPlayers(data);
+      if (data.length > 0) {
+        setSelectedPlayerId(data[0].id);
+      }
+    } catch (err) {
+      console.error('Error fetching players:', err);
+    }
+  };
+
+  const fetchUserData = async (userId: number) => {
+    try {
+      const [userRes, portfolioRes, txRes] = await Promise.all([
+        fetch(`/api/users/${userId}`),
+        fetch(`/api/users/${userId}/portfolio`),
+        fetch(`/api/users/${userId}/transactions`)
+      ]);
+      const userData = await userRes.json();
+      const portfolioData = await portfolioRes.json();
+      const txData = await txRes.json();
+
+      setBalance(userData.balance);
+      setPortfolio(portfolioData);
+      setTransactions(txData);
+    } catch (err) {
+      console.error('Error fetching user data:', err);
+    }
+  };
+
+  // Initial load
+  useEffect(() => {
+    const initLoad = async () => {
+      setLoading(true);
+      await Promise.all([fetchUsers(), fetchPlayers()]);
+      setLoading(false);
+    };
+    initLoad();
+  }, []);
+
+  // Fetch user specific data when selected user changes
+  useEffect(() => {
+    if (currentUserId) {
+      fetchUserData(currentUserId);
+    }
+  }, [currentUserId]);
 
   // Get selected player object
   const selectedPlayer = useMemo(() => {
-    return players.find(p => p.id === selectedPlayerId) || players[0];
+    return players.find(p => p.id === selectedPlayerId) || players[0] || {
+      id: 0, name: '', team: '', position: '', price: 0, change: 0, stats: { goals: 0, assists: 0, matches: 0, rating: 0 }, history: [], img: '⚽'
+    };
   }, [players, selectedPlayerId]);
 
   // Calculate dynamic Portfolio stats
@@ -76,7 +108,8 @@ export default function SportexApp() {
         currentValue: currentVal,
         totalCurrentVal: currentVal * item.quantity,
         profitLoss,
-        profitLossPercent
+        profitLossPercent,
+        lineupStatus: item.lineupStatus
       };
     });
 
@@ -96,91 +129,90 @@ export default function SportexApp() {
   }, [players, searchQuery, positionFilter]);
 
   // Handle buy event
-  const handleBuy = (player, qty) => {
-    const cost = player.price * qty;
-    if (balance < cost) {
-      showTradeMsg('אין מספיק יתרה פנויה בקופה לביצוע הרכישה!', 'error');
-      return;
-    }
-
-    setBalance(prev => prev - cost);
-    
-    // Update portfolio
-    setPortfolio(prev => {
-      const existing = prev.find(item => item.playerId === player.id);
-      if (existing) {
-        // Average cost basis recalculation
-        const totalCost = (existing.boughtPrice * existing.quantity) + cost;
-        const newQty = existing.quantity + qty;
-        return prev.map(item => 
-          item.playerId === player.id 
-            ? { ...item, quantity: newQty, boughtPrice: Math.round(totalCost / newQty) }
-            : item
-        );
+  const handleBuy = async (player: any) => {
+    try {
+      const res = await fetch('/api/trade', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: currentUserId,
+          playerId: player.id,
+          actionType: 'BUY'
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        showTradeMsg(data.error || 'שגיאה בביצוע הרכישה', 'error');
       } else {
-        return [...prev, { playerId: player.id, boughtPrice: player.price, quantity: qty }];
+        showTradeMsg(`רכישת ${player.name} הושלמה בהצלחה!`, 'success');
+        await Promise.all([fetchUserData(currentUserId), fetchPlayers()]);
       }
-    });
-
-    // Add transaction log
-    const newTx = {
-      id: Date.now(),
-      type: 'buy',
-      playerName: player.name,
-      quantity: qty,
-      price: player.price,
-      timestamp: new Date().toLocaleString('he-IL', { hour12: false })
-    };
-    setTransactions(prev => [newTx, ...prev]);
-    showTradeMsg(`רכישת ${qty} יחידות של ${player.name} הושלמה בהצלחה!`, 'success');
+    } catch (err) {
+      showTradeMsg('שגיאה בתקשורת עם השרת', 'error');
+    }
   };
 
   // Handle sell event
-  const handleSell = (player, qty) => {
-    const existing = portfolio.find(item => item.playerId === player.id);
-    if (!existing || existing.quantity < qty) {
-      showTradeMsg('אין ברשותך מספיק יחידות של שחקן זה למכירה!', 'error');
-      return;
+  const handleSell = async (player: any) => {
+    try {
+      const res = await fetch('/api/trade', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: currentUserId,
+          playerId: player.id,
+          actionType: 'SELL'
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        showTradeMsg(data.error || 'שגיאה בביצוע המכירה', 'error');
+      } else {
+        showTradeMsg(`מכירת ${player.name} הושלמה בהצלחה!`, 'success');
+        await Promise.all([fetchUserData(currentUserId), fetchPlayers()]);
+      }
+    } catch (err) {
+      showTradeMsg('שגיאה בתקשורת עם השרת', 'error');
     }
-
-    const earnings = player.price * qty;
-    setBalance(prev => prev + earnings);
-
-    // Update portfolio
-    setPortfolio(prev => {
-      return prev.map(item => {
-        if (item.playerId === player.id) {
-          return { ...item, quantity: item.quantity - qty };
-        }
-        return item;
-      }).filter(item => item.quantity > 0);
-    });
-
-    // Add transaction log
-    const newTx = {
-      id: Date.now(),
-      type: 'sell',
-      playerName: player.name,
-      quantity: qty,
-      price: player.price,
-      timestamp: new Date().toLocaleString('he-IL', { hour12: false })
-    };
-    setTransactions(prev => [newTx, ...prev]);
-    showTradeMsg(`מכירת ${qty} יחידות של ${player.name} הושלמה בהצלחה!`, 'success');
   };
 
-  const showTradeMsg = (text, type) => {
+  // Toggle lineup status between Starter and Bench
+  const handleToggleLineup = async (player: any, currentStatus: string) => {
+    const nextStatus = currentStatus === 'Starter' ? 'Bench' : 'Starter';
+    try {
+      const res = await fetch('/api/portfolio/lineup', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: currentUserId,
+          playerId: player.id,
+          lineupStatus: nextStatus
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        showTradeMsg(data.error || 'שגיאה בעדכון ההרכב', 'error');
+      } else {
+        showTradeMsg(`השחקן ${player.name} הועבר ל${nextStatus === 'Starter' ? 'הרכב הפותח' : 'ספסל החילופים'}!`, 'success');
+        await fetchUserData(currentUserId);
+      }
+    } catch (err) {
+      showTradeMsg('שגיאה בתקשורת עם השרת', 'error');
+    }
+  };
+
+  const showTradeMsg = (text: string, type: string) => {
     setTradeMessage({ text, type });
     setTimeout(() => setTradeMessage({ text: '', type: '' }), 4000);
   };
 
   // Helper formatting values to NIS (₪)
-  const formatCurrency = (val) => {
+  const formatCurrency = (val: number) => {
     return new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS', maximumFractionDigits: 0 }).format(val);
   };
 
   // Helper for rendering line graph dynamically using SVG coordinates based on selected player history
-  const renderSVGChart = (history) => {
+  const renderSVGChart = (history: number[]) => {
     if (!history || history.length === 0) return null;
     const width = 500;
     const height = 180;
@@ -188,7 +220,7 @@ export default function SportexApp() {
 
     const min = Math.min(...history) * 0.99;
     const max = Math.max(...history) * 1.01;
-    const range = max - min;
+    const range = max - min || 1;
 
     const points = history.map((val, index) => {
       const x = padding + (index / (history.length - 1)) * (width - padding * 2);
@@ -234,6 +266,18 @@ export default function SportexApp() {
     );
   };
 
+  if (loading) {
+    return (
+      <div dir="rtl" className="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center justify-center font-sans antialiased">
+        <div className="bg-slate-900 border border-slate-800 p-8 rounded-3xl text-center space-y-4 max-w-sm">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-500 mx-auto"></div>
+          <h2 className="text-xl font-bold">טוען נתונים מהשרת...</h2>
+          <p className="text-sm text-slate-400">מתחבר לבסיס הנתונים ומסנכרן את בורסת השחקנים</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div dir="rtl" className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-white pb-12">
       
@@ -252,6 +296,22 @@ export default function SportexApp() {
               <h1 className="text-2xl font-black bg-gradient-to-l from-emerald-400 to-teal-200 bg-clip-text text-transparent">ספורטקס</h1>
               <p className="text-xs text-slate-400 font-medium tracking-wide">בורסת שחקני הכדורגל הראשונה בישראל</p>
             </div>
+          </div>
+
+          {/* Active User Selector Dropdown */}
+          <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-2 rounded-2xl">
+            <span className="text-[11px] text-slate-400 font-bold block">משתמש פעיל:</span>
+            <select 
+              value={currentUserId}
+              onChange={(e) => setCurrentUserId(parseInt(e.target.value))}
+              className="bg-slate-950 border border-slate-800 text-slate-100 rounded-xl text-xs sm:text-sm px-3 py-1.5 focus:outline-none focus:border-emerald-500 font-bold"
+            >
+              {users.map(u => (
+                <option key={u.id} value={u.id}>
+                  {u.name} (מזהה: {u.id})
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Quick Stats Banner */}
@@ -291,7 +351,7 @@ export default function SportexApp() {
             onClick={() => setActiveTab('portfolio')} 
             className={`flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-all duration-200 whitespace-nowrap flex items-center justify-center gap-2 ${activeTab === 'portfolio' ? 'bg-slate-800 text-emerald-400 shadow-md' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'}`}
           >
-            💼 התיק שלי ({portfolioDetails.items.length})
+            💼 הסגל שלי ({portfolioDetails.items.length})
           </button>
           <button 
             onClick={() => setActiveTab('transactions')} 
@@ -437,23 +497,23 @@ export default function SportexApp() {
 
               {/* STATS DETAIL */}
               <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6">
-                <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4 border-b border-slate-800 pb-3">נתונים סטטיסטיים העונה</h3>
+                <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4 border-b border-slate-800 pb-3">נתוני שוק אמיתיים (מסד נתונים)</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <span className="text-xs text-slate-400 block">שערים</span>
-                    <span className="text-2xl font-black text-slate-200">{selectedPlayer.stats.goals}</span>
+                    <span className="text-xs text-slate-400 block">מחיר שפל</span>
+                    <span className="text-lg font-black text-rose-500">{formatCurrency(selectedPlayer.stats.min_price)}</span>
                   </div>
                   <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <span className="text-xs text-slate-400 block">בישולים</span>
-                    <span className="text-2xl font-black text-slate-200">{selectedPlayer.stats.assists}</span>
+                    <span className="text-xs text-slate-400 block">מחיר שיא</span>
+                    <span className="text-lg font-black text-emerald-400">{formatCurrency(selectedPlayer.stats.max_price)}</span>
                   </div>
                   <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <span className="text-xs text-slate-400 block">הופעות</span>
-                    <span className="text-2xl font-black text-slate-200">{selectedPlayer.stats.matches}</span>
+                    <span className="text-xs text-slate-400 block">בעלים בליגה</span>
+                    <span className="text-2xl font-black text-slate-200">{selectedPlayer.stats.squad_owners}</span>
                   </div>
                   <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <span className="text-xs text-slate-400 block">ציון ממוצע</span>
-                    <span className="text-2xl font-black text-emerald-400">★ {selectedPlayer.stats.rating}</span>
+                    <span className="text-xs text-slate-400 block">עסקאות שוק</span>
+                    <span className="text-2xl font-black text-slate-200">{selectedPlayer.stats.total_trades}</span>
                   </div>
                 </div>
               </div>
@@ -476,9 +536,8 @@ export default function SportexApp() {
                 {renderSVGChart(selectedPlayer.history)}
 
                 <div className="flex justify-between text-xs text-slate-500 mt-2 px-4">
-                  <span>לפני 7 מחזורים</span>
-                  <span>לפני 4 מחזורים</span>
-                  <span>מחזור נוכחי</span>
+                  <span>מחזור אחרון שתועד</span>
+                  <span>מחזור ראשון שתועד</span>
                 </div>
               </div>
 
@@ -497,39 +556,13 @@ export default function SportexApp() {
                   
                   {/* Quantity and Estimate */}
                   <div className="space-y-4">
-                    <div>
-                      <label className="text-xs text-slate-400 block mb-2">כמות יחידות לרכישה/מכירה:</label>
-                      <div className="flex items-center gap-2">
-                        <button 
-                          onClick={() => setTradeQuantity(prev => Math.max(1, prev - 1))}
-                          className="bg-slate-950 hover:bg-slate-800 border border-slate-800 w-12 h-12 rounded-xl text-lg font-bold transition-colors"
-                        >
-                          -
-                        </button>
-                        <input 
-                          type="number" 
-                          min="1" 
-                          value={tradeQuantity} 
-                          onChange={(e) => setTradeQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                          className="flex-1 bg-slate-950 border border-slate-800 rounded-xl py-3 px-4 text-center text-lg font-bold text-slate-100 focus:outline-none focus:border-emerald-500"
-                        />
-                        <button 
-                          onClick={() => setTradeQuantity(prev => prev + 1)}
-                          className="bg-slate-950 hover:bg-slate-800 border border-slate-800 w-12 h-12 rounded-xl text-lg font-bold transition-colors"
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-
                     <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800">
                       <div className="flex justify-between text-sm mb-2">
-                        <span className="text-slate-400">שווי יחידה:</span>
+                        <span className="text-slate-400">מחיר השחקן לרכישה/מכירה:</span>
                         <span className="font-semibold text-slate-200">{formatCurrency(selectedPlayer.price)}</span>
                       </div>
-                      <div className="flex justify-between text-base font-black border-t border-slate-800 pt-2">
-                        <span className="text-slate-100">סך הכל בעסקה:</span>
-                        <span className="text-emerald-400">{formatCurrency(selectedPlayer.price * tradeQuantity)}</span>
+                      <div className="text-xs text-slate-400 border-t border-slate-800 pt-2">
+                        * ניתן לרכוש כל שחקן פעם אחת בלבד לסגל האישי שלך (בהתאם לחוקי הליגה).
                       </div>
                     </div>
                   </div>
@@ -537,18 +570,22 @@ export default function SportexApp() {
                   {/* Buy/Sell Buttons */}
                   <div className="flex flex-col justify-between gap-3">
                     <div className="text-xs text-slate-400 p-3 bg-slate-950 rounded-xl border border-slate-800">
-                      🛡️ <span className="font-bold">החזקה שלך:</span> {portfolio.find(item => item.playerId === selectedPlayer.id)?.quantity || 0} יחידות שחקן.
+                      🛡️ <span className="font-bold">סטטוס בעלות:</span> {
+                        portfolio.find(item => item.playerId === selectedPlayer.id) 
+                          ? (portfolio.find(item => item.playerId === selectedPlayer.id)?.lineupStatus === 'Starter' ? 'בסגל שלך (הרכב פותח)' : 'בסגל שלך (ספסל)') 
+                          : 'לא בסגל שלך'
+                      }
                     </div>
                     
                     <button 
-                      onClick={() => handleBuy(selectedPlayer, tradeQuantity)}
+                      onClick={() => handleBuy(selectedPlayer)}
                       className="w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl text-base transition-all duration-200 shadow-lg shadow-emerald-500/10 hover:-translate-y-0.5"
                     >
-                      קנייה מיידית לתיק
+                      קנייה מיידית לסגל
                     </button>
                     
                     <button 
-                      onClick={() => handleSell(selectedPlayer, tradeQuantity)}
+                      onClick={() => handleSell(selectedPlayer)}
                       className="w-full py-4 bg-transparent hover:bg-rose-500/10 border border-rose-500/50 hover:border-rose-500 text-rose-500 font-bold rounded-xl text-base transition-all duration-200"
                     >
                       מכירת החזקות פנויות
@@ -588,7 +625,7 @@ export default function SportexApp() {
               </div>
 
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 relative overflow-hidden">
-                <span className="text-xs font-bold text-slate-400 block mb-1">תשואת תיק כוללת</span>
+                <span className="text-xs font-bold text-slate-400 block mb-1">תשואת סגל כוללת</span>
                 <span className={`text-2xl font-black ${portfolioDetails.totalProfitLossPercent >= 0 ? 'text-emerald-400' : 'text-rose-500'}`}>
                   {portfolioDetails.totalProfitLossPercent >= 0 ? '+' : ''}{portfolioDetails.totalProfitLossPercent.toFixed(2)}%
                 </span>
@@ -606,12 +643,12 @@ export default function SportexApp() {
                   <thead>
                     <tr className="bg-slate-950/60 text-slate-400 text-xs border-b border-slate-800">
                       <th className="py-4 px-6">שחקן</th>
-                      <th className="py-4 px-6">כמות יח'</th>
-                      <th className="py-4 px-6">מחיר קנייה ממוצע</th>
+                      <th className="py-4 px-6">סטטוס סגל</th>
+                      <th className="py-4 px-6">מחיר קנייה</th>
                       <th className="py-4 px-6">שווי שוק נוכחי</th>
-                      <th className="py-4 px-6">שווי פוזיציה כולל</th>
                       <th className="py-4 px-6">רווח / הפסד פוזיציה</th>
-                      <th className="py-4 px-6 text-center">פעולות</th>
+                      <th className="py-4 px-6 text-center">פעולות הרכב</th>
+                      <th className="py-4 px-6 text-center">ניתוח</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800">
@@ -625,10 +662,13 @@ export default function SportexApp() {
                               <div className="text-[11px] text-slate-400">{item.team}</div>
                             </div>
                           </td>
-                          <td className="py-4 px-6 font-bold text-slate-300">{item.quantity}</td>
+                          <td className="py-4 px-6 font-bold">
+                            <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${item.lineupStatus === 'Starter' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-slate-950 border border-slate-800 text-slate-400'}`}>
+                              {item.lineupStatus === 'Starter' ? 'הרכב פותח' : 'ספסל'}
+                            </span>
+                          </td>
                           <td className="py-4 px-6 text-slate-300">{formatCurrency(item.boughtPrice)}</td>
                           <td className="py-4 px-6 font-semibold text-slate-100">{formatCurrency(item.currentValue)}</td>
-                          <td className="py-4 px-6 font-extrabold text-teal-300">{formatCurrency(item.totalCurrentVal)}</td>
                           <td className="py-4 px-6">
                             <div className={`font-bold ${item.profitLoss >= 0 ? 'text-emerald-400' : 'text-rose-500'}`}>
                               {item.profitLoss >= 0 ? '+' : ''}{formatCurrency(item.profitLoss)}
@@ -638,24 +678,30 @@ export default function SportexApp() {
                             </div>
                           </td>
                           <td className="py-4 px-6 text-center">
-                            <div className="flex gap-2 justify-center">
-                              <button 
-                                onClick={() => {
-                                  setSelectedPlayerId(item.id);
-                                  setActiveTab('profile');
-                                }}
-                                className="px-3 py-1.5 bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 rounded-lg text-xs font-bold transition-all"
-                              >
-                                ניהול
-                              </button>
-                            </div>
+                            <button
+                              onClick={() => handleToggleLineup(item, item.lineupStatus)}
+                              className={`px-3 py-1.5 rounded-lg text-xs font-black transition-all ${item.lineupStatus === 'Starter' ? 'bg-slate-800 hover:bg-rose-500/10 hover:text-rose-500 border border-transparent text-slate-300' : 'bg-emerald-500 text-slate-950 hover:bg-emerald-400'}`}
+                            >
+                              {item.lineupStatus === 'Starter' ? 'הורד לספסל' : 'העלה להרכב'}
+                            </button>
+                          </td>
+                          <td className="py-4 px-6 text-center">
+                            <button 
+                              onClick={() => {
+                                setSelectedPlayerId(item.id);
+                                setActiveTab('profile');
+                              }}
+                              className="px-3 py-1.5 bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 rounded-lg text-xs font-bold transition-all"
+                            >
+                              גרף ומסחר
+                            </button>
                           </td>
                         </tr>
                       ))
                     ) : (
                       <tr>
                         <td colSpan="7" className="py-12 text-center text-slate-500">
-                          התיק שלך ריק כרגע. גש לשוק השחקנים כדי לרכוש את הכוכבים שלך!
+                          הסגל שלך ריק כרגע. גש לשוק השחקנים כדי לרכוש את הכוכבים שלך!
                         </td>
                       </tr>
                     )}
