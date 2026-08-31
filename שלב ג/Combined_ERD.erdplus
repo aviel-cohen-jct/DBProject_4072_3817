@@ -1,0 +1,2782 @@
+{
+ "diagramType": 1,
+ "data": {
+  "nodes": [
+   {
+    "id": "00000000-0000-4000-8000-000000000218",
+    "type": "Entity",
+    "position": {
+     "x": 0,
+     "y": 400
+    },
+    "data": {
+     "label": "Player",
+     "type": "Supertype",
+     "isConnectable": false,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000219",
+    "parentId": "00000000-0000-4000-8000-000000000218",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "PlayerID",
+     "types": {
+      "Unique": true
+     },
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000221",
+    "parentId": "00000000-0000-4000-8000-000000000218",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "PlayerName",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000223",
+    "parentId": "00000000-0000-4000-8000-000000000218",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "BirthDate",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000225",
+    "parentId": "00000000-0000-4000-8000-000000000218",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -132
+    },
+    "data": {
+     "label": "Position",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000227",
+    "parentId": "00000000-0000-4000-8000-000000000218",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -132
+    },
+    "data": {
+     "label": "Height",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000229",
+    "parentId": "00000000-0000-4000-8000-000000000218",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -132
+    },
+    "data": {
+     "label": "StrongLeg",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000231",
+    "parentId": "00000000-0000-4000-8000-000000000218",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -194
+    },
+    "data": {
+     "label": "NativeCountry",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000233",
+    "type": "Entity",
+    "position": {
+     "x": 0,
+     "y": 900
+    },
+    "data": {
+     "label": "Goalkeeper",
+     "type": "Regular",
+     "isConnectable": false,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000234",
+    "parentId": "00000000-0000-4000-8000-000000000233",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "GlovesNumber",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000236",
+    "type": "Entity",
+    "position": {
+     "x": 1000,
+     "y": 400
+    },
+    "data": {
+     "label": "Team",
+     "type": "Regular",
+     "isConnectable": false,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000237",
+    "parentId": "00000000-0000-4000-8000-000000000236",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "TeamID",
+     "types": {
+      "Unique": true
+     },
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000239",
+    "parentId": "00000000-0000-4000-8000-000000000236",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "TeamName",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000241",
+    "parentId": "00000000-0000-4000-8000-000000000236",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "Country",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000243",
+    "parentId": "00000000-0000-4000-8000-000000000236",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -132
+    },
+    "data": {
+     "label": "YearFounded",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000245",
+    "type": "Entity",
+    "position": {
+     "x": 2000,
+     "y": 400
+    },
+    "data": {
+     "label": "Coach",
+     "type": "Regular",
+     "isConnectable": false,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000246",
+    "parentId": "00000000-0000-4000-8000-000000000245",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "CoachID",
+     "types": {
+      "Unique": true
+     },
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000248",
+    "parentId": "00000000-0000-4000-8000-000000000245",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "CoachName",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000250",
+    "parentId": "00000000-0000-4000-8000-000000000245",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "Gender",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000252",
+    "parentId": "00000000-0000-4000-8000-000000000245",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -132
+    },
+    "data": {
+     "label": "Birthday",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000254",
+    "parentId": "00000000-0000-4000-8000-000000000245",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -132
+    },
+    "data": {
+     "label": "ProDate",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000256",
+    "type": "Entity",
+    "position": {
+     "x": 1000,
+     "y": 1300
+    },
+    "data": {
+     "label": "Match",
+     "type": "Regular",
+     "isConnectable": false,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000257",
+    "parentId": "00000000-0000-4000-8000-000000000256",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "MatchID",
+     "types": {
+      "Unique": true
+     },
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000259",
+    "parentId": "00000000-0000-4000-8000-000000000256",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "MatchDate",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000261",
+    "parentId": "00000000-0000-4000-8000-000000000256",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "Stage",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000263",
+    "type": "Entity",
+    "position": {
+     "x": 2000,
+     "y": 1300
+    },
+    "data": {
+     "label": "Referee",
+     "type": "Regular",
+     "isConnectable": false,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000264",
+    "parentId": "00000000-0000-4000-8000-000000000263",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "RefereeID",
+     "types": {
+      "Unique": true
+     },
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000266",
+    "parentId": "00000000-0000-4000-8000-000000000263",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "RefereeName",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000268",
+    "parentId": "00000000-0000-4000-8000-000000000263",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "Gender",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000270",
+    "parentId": "00000000-0000-4000-8000-000000000263",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -132
+    },
+    "data": {
+     "label": "Birthday",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000272",
+    "parentId": "00000000-0000-4000-8000-000000000263",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -132
+    },
+    "data": {
+     "label": "ProDate",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000274",
+    "type": "Entity",
+    "position": {
+     "x": 1000,
+     "y": 2000
+    },
+    "data": {
+     "label": "Stadium",
+     "type": "Regular",
+     "isConnectable": false,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000275",
+    "parentId": "00000000-0000-4000-8000-000000000274",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "StadiumID",
+     "types": {
+      "Unique": true
+     },
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000277",
+    "parentId": "00000000-0000-4000-8000-000000000274",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "StadiumName",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000279",
+    "parentId": "00000000-0000-4000-8000-000000000274",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "City",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000281",
+    "parentId": "00000000-0000-4000-8000-000000000274",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -132
+    },
+    "data": {
+     "label": "Capacity",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000283",
+    "parentId": "00000000-0000-4000-8000-000000000274",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -132
+    },
+    "data": {
+     "label": "YearFounded",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000285",
+    "type": "Entity",
+    "position": {
+     "x": -2600,
+     "y": 400
+    },
+    "data": {
+     "label": "User",
+     "type": "Regular",
+     "isConnectable": false,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000286",
+    "parentId": "00000000-0000-4000-8000-000000000285",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "User_ID",
+     "types": {
+      "Unique": true
+     },
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000288",
+    "parentId": "00000000-0000-4000-8000-000000000285",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "User_Name",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000290",
+    "parentId": "00000000-0000-4000-8000-000000000285",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "Current_Budget",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000292",
+    "type": "Entity",
+    "position": {
+     "x": -1500,
+     "y": 400
+    },
+    "data": {
+     "label": "BursaPlayer",
+     "type": "Regular",
+     "isConnectable": false,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000293",
+    "parentId": "00000000-0000-4000-8000-000000000292",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "Player_ID",
+     "types": {
+      "Unique": true
+     },
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000295",
+    "parentId": "00000000-0000-4000-8000-000000000292",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "First_Name",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000297",
+    "parentId": "00000000-0000-4000-8000-000000000292",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "Last_Name",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000299",
+    "parentId": "00000000-0000-4000-8000-000000000292",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -132
+    },
+    "data": {
+     "label": "Position",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000301",
+    "parentId": "00000000-0000-4000-8000-000000000292",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -132
+    },
+    "data": {
+     "label": "Team_Name",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000303",
+    "parentId": "00000000-0000-4000-8000-000000000292",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -132
+    },
+    "data": {
+     "label": "Current_Price",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000305",
+    "type": "Entity",
+    "position": {
+     "x": -2600,
+     "y": 1300
+    },
+    "data": {
+     "label": "Round",
+     "type": "Regular",
+     "isConnectable": false,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000306",
+    "parentId": "00000000-0000-4000-8000-000000000305",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "Round_ID",
+     "types": {
+      "Unique": true
+     },
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000308",
+    "parentId": "00000000-0000-4000-8000-000000000305",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "Round_Number",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000310",
+    "parentId": "00000000-0000-4000-8000-000000000305",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "Start_Date",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000312",
+    "parentId": "00000000-0000-4000-8000-000000000305",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -132
+    },
+    "data": {
+     "label": "End_Date",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000314",
+    "parentId": "00000000-0000-4000-8000-000000000305",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -132
+    },
+    "data": {
+     "label": "Status",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000316",
+    "type": "Relationship",
+    "position": {
+     "x": 500,
+     "y": 400
+    },
+    "data": {
+     "label": "PlaysFor",
+     "sourceEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000218",
+      "maxCardinality": "Many"
+     },
+     "targetEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000236",
+      "maxCardinality": "Many"
+     },
+     "isSelected": false,
+     "isConnectable": true
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000317",
+    "parentId": "00000000-0000-4000-8000-000000000316",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "StartDate",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000319",
+    "parentId": "00000000-0000-4000-8000-000000000316",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "Salary",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000321",
+    "type": "Relationship",
+    "position": {
+     "x": 500,
+     "y": 900
+    },
+    "data": {
+     "label": "GKPlaysFor",
+     "sourceEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000233",
+      "maxCardinality": "Many"
+     },
+     "targetEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000236",
+      "maxCardinality": "Many"
+     },
+     "isSelected": false,
+     "isConnectable": true
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000322",
+    "parentId": "00000000-0000-4000-8000-000000000321",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "StartDate",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000324",
+    "parentId": "00000000-0000-4000-8000-000000000321",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "Salary",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000326",
+    "type": "Relationship",
+    "position": {
+     "x": 1500,
+     "y": 400
+    },
+    "data": {
+     "label": "CoachedBy",
+     "sourceEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000236",
+      "maxCardinality": "Many"
+     },
+     "targetEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000245",
+      "maxCardinality": "Many"
+     },
+     "isSelected": false,
+     "isConnectable": true
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000327",
+    "parentId": "00000000-0000-4000-8000-000000000326",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "StartDate",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000329",
+    "parentId": "00000000-0000-4000-8000-000000000326",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "Salary",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000331",
+    "type": "Relationship",
+    "position": {
+     "x": 300,
+     "y": 1300
+    },
+    "data": {
+     "label": "PerformsIn",
+     "sourceEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000218",
+      "maxCardinality": "Many"
+     },
+     "targetEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000256",
+      "maxCardinality": "Many"
+     },
+     "isSelected": false,
+     "isConnectable": true
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000332",
+    "parentId": "00000000-0000-4000-8000-000000000331",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "Goals",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000334",
+    "parentId": "00000000-0000-4000-8000-000000000331",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "Assists",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000336",
+    "parentId": "00000000-0000-4000-8000-000000000331",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "PassCompleted",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000338",
+    "parentId": "00000000-0000-4000-8000-000000000331",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -132
+    },
+    "data": {
+     "label": "PassAttempts",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000340",
+    "parentId": "00000000-0000-4000-8000-000000000331",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -132
+    },
+    "data": {
+     "label": "Tackles",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000342",
+    "parentId": "00000000-0000-4000-8000-000000000331",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -132
+    },
+    "data": {
+     "label": "YellowCard",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000344",
+    "parentId": "00000000-0000-4000-8000-000000000331",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -194
+    },
+    "data": {
+     "label": "RedCard",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000346",
+    "type": "Relationship",
+    "position": {
+     "x": 500,
+     "y": 1650
+    },
+    "data": {
+     "label": "GKPerformsIn",
+     "sourceEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000233",
+      "maxCardinality": "Many"
+     },
+     "targetEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000256",
+      "maxCardinality": "Many"
+     },
+     "isSelected": false,
+     "isConnectable": true
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000347",
+    "parentId": "00000000-0000-4000-8000-000000000346",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "Saves",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000349",
+    "parentId": "00000000-0000-4000-8000-000000000346",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "GoalsConceded",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000351",
+    "parentId": "00000000-0000-4000-8000-000000000346",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "YellowCard",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000353",
+    "parentId": "00000000-0000-4000-8000-000000000346",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -132
+    },
+    "data": {
+     "label": "RedCard",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000355",
+    "type": "Relationship",
+    "position": {
+     "x": 1000,
+     "y": 850
+    },
+    "data": {
+     "label": "Participates",
+     "sourceEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000256",
+      "maxCardinality": "Many"
+     },
+     "targetEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000236",
+      "maxCardinality": "Many"
+     },
+     "isSelected": false,
+     "isConnectable": true
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000356",
+    "parentId": "00000000-0000-4000-8000-000000000355",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "Role",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000358",
+    "parentId": "00000000-0000-4000-8000-000000000355",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "Score",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000360",
+    "parentId": "00000000-0000-4000-8000-000000000355",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "WinLoss",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000362",
+    "type": "Relationship",
+    "position": {
+     "x": 1500,
+     "y": 1300
+    },
+    "data": {
+     "label": "OfficiatedBy",
+     "sourceEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000256",
+      "maxCardinality": "Many"
+     },
+     "targetEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000263",
+      "maxCardinality": "Many"
+     },
+     "isSelected": false,
+     "isConnectable": true
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000363",
+    "type": "Relationship",
+    "position": {
+     "x": 1000,
+     "y": 1650
+    },
+    "data": {
+     "label": "HeldAt",
+     "sourceEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000256",
+      "maxCardinality": "Many"
+     },
+     "targetEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000274",
+      "maxCardinality": "One"
+     },
+     "isSelected": false,
+     "isConnectable": true
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000364",
+    "parentId": "00000000-0000-4000-8000-000000000363",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "Attendees",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000366",
+    "type": "Relationship",
+    "position": {
+     "x": -2050,
+     "y": 400
+    },
+    "data": {
+     "label": "Buys/Sells",
+     "sourceEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000285",
+      "maxCardinality": "Many"
+     },
+     "targetEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000292",
+      "maxCardinality": "Many"
+     },
+     "isSelected": false,
+     "isConnectable": true
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000367",
+    "parentId": "00000000-0000-4000-8000-000000000366",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "Transaction_ID",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000369",
+    "parentId": "00000000-0000-4000-8000-000000000366",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "Transaction_Time",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000371",
+    "parentId": "00000000-0000-4000-8000-000000000366",
+    "type": "Attribute",
+    "position": {
+     "x": 120,
+     "y": -70
+    },
+    "data": {
+     "label": "Action_Type",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000373",
+    "parentId": "00000000-0000-4000-8000-000000000366",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -132
+    },
+    "data": {
+     "label": "Transaction_Price",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000375",
+    "type": "Relationship",
+    "position": {
+     "x": -2050,
+     "y": 850
+    },
+    "data": {
+     "label": "HasInSquad",
+     "sourceEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000285",
+      "maxCardinality": "Many"
+     },
+     "targetEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000292",
+      "maxCardinality": "Many"
+     },
+     "isSelected": false,
+     "isConnectable": true
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000376",
+    "parentId": "00000000-0000-4000-8000-000000000375",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "Squad_Record_ID",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000378",
+    "parentId": "00000000-0000-4000-8000-000000000375",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "Lineup_Status",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000380",
+    "type": "Relationship",
+    "position": {
+     "x": -2050,
+     "y": 1300
+    },
+    "data": {
+     "label": "PricedAt",
+     "sourceEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000292",
+      "maxCardinality": "Many"
+     },
+     "targetEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000305",
+      "maxCardinality": "Many"
+     },
+     "isSelected": false,
+     "isConnectable": true
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000381",
+    "parentId": "00000000-0000-4000-8000-000000000380",
+    "type": "Attribute",
+    "position": {
+     "x": -130,
+     "y": -70
+    },
+    "data": {
+     "label": "History_ID",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000383",
+    "parentId": "00000000-0000-4000-8000-000000000380",
+    "type": "Attribute",
+    "position": {
+     "x": -5,
+     "y": -70
+    },
+    "data": {
+     "label": "Recorded_Price",
+     "types": [],
+     "isSelected": false,
+     "isConnectable": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000385",
+    "type": "Relationship",
+    "position": {
+     "x": -750,
+     "y": 400
+    },
+    "data": {
+     "label": "MappedTo",
+     "sourceEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000292",
+      "maxCardinality": "One"
+     },
+     "targetEntityDetails": {
+      "id": "00000000-0000-4000-8000-000000000218",
+      "maxCardinality": "One"
+     },
+     "isSelected": false,
+     "isConnectable": true
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   }
+  ],
+  "edges": [
+   {
+    "id": "00000000-0000-4000-8000-000000000220",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000218",
+    "target": "00000000-0000-4000-8000-000000000219"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000222",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000218",
+    "target": "00000000-0000-4000-8000-000000000221"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000224",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000218",
+    "target": "00000000-0000-4000-8000-000000000223"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000226",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000218",
+    "target": "00000000-0000-4000-8000-000000000225"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000228",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000218",
+    "target": "00000000-0000-4000-8000-000000000227"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000230",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000218",
+    "target": "00000000-0000-4000-8000-000000000229"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000232",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000218",
+    "target": "00000000-0000-4000-8000-000000000231"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000235",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000233",
+    "target": "00000000-0000-4000-8000-000000000234"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000238",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000236",
+    "target": "00000000-0000-4000-8000-000000000237"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000240",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000236",
+    "target": "00000000-0000-4000-8000-000000000239"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000242",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000236",
+    "target": "00000000-0000-4000-8000-000000000241"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000244",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000236",
+    "target": "00000000-0000-4000-8000-000000000243"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000247",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000245",
+    "target": "00000000-0000-4000-8000-000000000246"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000249",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000245",
+    "target": "00000000-0000-4000-8000-000000000248"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000251",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000245",
+    "target": "00000000-0000-4000-8000-000000000250"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000253",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000245",
+    "target": "00000000-0000-4000-8000-000000000252"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000255",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000245",
+    "target": "00000000-0000-4000-8000-000000000254"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000258",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000256",
+    "target": "00000000-0000-4000-8000-000000000257"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000260",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000256",
+    "target": "00000000-0000-4000-8000-000000000259"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000262",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000256",
+    "target": "00000000-0000-4000-8000-000000000261"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000265",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000263",
+    "target": "00000000-0000-4000-8000-000000000264"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000267",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000263",
+    "target": "00000000-0000-4000-8000-000000000266"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000269",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000263",
+    "target": "00000000-0000-4000-8000-000000000268"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000271",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000263",
+    "target": "00000000-0000-4000-8000-000000000270"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000273",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000263",
+    "target": "00000000-0000-4000-8000-000000000272"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000276",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000274",
+    "target": "00000000-0000-4000-8000-000000000275"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000278",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000274",
+    "target": "00000000-0000-4000-8000-000000000277"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000280",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000274",
+    "target": "00000000-0000-4000-8000-000000000279"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000282",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000274",
+    "target": "00000000-0000-4000-8000-000000000281"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000284",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000274",
+    "target": "00000000-0000-4000-8000-000000000283"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000287",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000285",
+    "target": "00000000-0000-4000-8000-000000000286"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000289",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000285",
+    "target": "00000000-0000-4000-8000-000000000288"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000291",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000285",
+    "target": "00000000-0000-4000-8000-000000000290"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000294",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000292",
+    "target": "00000000-0000-4000-8000-000000000293"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000296",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000292",
+    "target": "00000000-0000-4000-8000-000000000295"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000298",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000292",
+    "target": "00000000-0000-4000-8000-000000000297"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000300",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000292",
+    "target": "00000000-0000-4000-8000-000000000299"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000302",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000292",
+    "target": "00000000-0000-4000-8000-000000000301"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000304",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000292",
+    "target": "00000000-0000-4000-8000-000000000303"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000307",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000305",
+    "target": "00000000-0000-4000-8000-000000000306"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000309",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000305",
+    "target": "00000000-0000-4000-8000-000000000308"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000311",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000305",
+    "target": "00000000-0000-4000-8000-000000000310"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000313",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000305",
+    "target": "00000000-0000-4000-8000-000000000312"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000315",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000305",
+    "target": "00000000-0000-4000-8000-000000000314"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000316->00000000-0000-4000-8000-000000000218",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000316",
+    "target": "00000000-0000-4000-8000-000000000218",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000316->00000000-0000-4000-8000-000000000218",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000316->00000000-0000-4000-8000-000000000236",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000316",
+    "target": "00000000-0000-4000-8000-000000000236",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000316->00000000-0000-4000-8000-000000000236",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000318",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000316",
+    "target": "00000000-0000-4000-8000-000000000317"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000320",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000316",
+    "target": "00000000-0000-4000-8000-000000000319"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000321->00000000-0000-4000-8000-000000000233",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000321",
+    "target": "00000000-0000-4000-8000-000000000233",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000321->00000000-0000-4000-8000-000000000233",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000321->00000000-0000-4000-8000-000000000236",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000321",
+    "target": "00000000-0000-4000-8000-000000000236",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000321->00000000-0000-4000-8000-000000000236",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000323",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000321",
+    "target": "00000000-0000-4000-8000-000000000322"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000325",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000321",
+    "target": "00000000-0000-4000-8000-000000000324"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000326->00000000-0000-4000-8000-000000000236",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000326",
+    "target": "00000000-0000-4000-8000-000000000236",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000326->00000000-0000-4000-8000-000000000236",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000326->00000000-0000-4000-8000-000000000245",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000326",
+    "target": "00000000-0000-4000-8000-000000000245",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000326->00000000-0000-4000-8000-000000000245",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000328",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000326",
+    "target": "00000000-0000-4000-8000-000000000327"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000330",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000326",
+    "target": "00000000-0000-4000-8000-000000000329"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000331->00000000-0000-4000-8000-000000000218",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000331",
+    "target": "00000000-0000-4000-8000-000000000218",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000331->00000000-0000-4000-8000-000000000218",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000331->00000000-0000-4000-8000-000000000256",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000331",
+    "target": "00000000-0000-4000-8000-000000000256",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000331->00000000-0000-4000-8000-000000000256",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000333",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000331",
+    "target": "00000000-0000-4000-8000-000000000332"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000335",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000331",
+    "target": "00000000-0000-4000-8000-000000000334"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000337",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000331",
+    "target": "00000000-0000-4000-8000-000000000336"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000339",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000331",
+    "target": "00000000-0000-4000-8000-000000000338"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000341",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000331",
+    "target": "00000000-0000-4000-8000-000000000340"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000343",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000331",
+    "target": "00000000-0000-4000-8000-000000000342"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000345",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000331",
+    "target": "00000000-0000-4000-8000-000000000344"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000346->00000000-0000-4000-8000-000000000233",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000346",
+    "target": "00000000-0000-4000-8000-000000000233",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000346->00000000-0000-4000-8000-000000000233",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000346->00000000-0000-4000-8000-000000000256",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000346",
+    "target": "00000000-0000-4000-8000-000000000256",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000346->00000000-0000-4000-8000-000000000256",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000348",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000346",
+    "target": "00000000-0000-4000-8000-000000000347"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000350",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000346",
+    "target": "00000000-0000-4000-8000-000000000349"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000352",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000346",
+    "target": "00000000-0000-4000-8000-000000000351"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000354",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000346",
+    "target": "00000000-0000-4000-8000-000000000353"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000355->00000000-0000-4000-8000-000000000256",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000355",
+    "target": "00000000-0000-4000-8000-000000000256",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000355->00000000-0000-4000-8000-000000000256",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000355->00000000-0000-4000-8000-000000000236",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000355",
+    "target": "00000000-0000-4000-8000-000000000236",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000355->00000000-0000-4000-8000-000000000236",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000357",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000355",
+    "target": "00000000-0000-4000-8000-000000000356"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000359",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000355",
+    "target": "00000000-0000-4000-8000-000000000358"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000361",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000355",
+    "target": "00000000-0000-4000-8000-000000000360"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000362->00000000-0000-4000-8000-000000000256",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000362",
+    "target": "00000000-0000-4000-8000-000000000256",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000362->00000000-0000-4000-8000-000000000256",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000362->00000000-0000-4000-8000-000000000263",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000362",
+    "target": "00000000-0000-4000-8000-000000000263",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000362->00000000-0000-4000-8000-000000000263",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000363->00000000-0000-4000-8000-000000000256",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000363",
+    "target": "00000000-0000-4000-8000-000000000256",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000363->00000000-0000-4000-8000-000000000256",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000363->00000000-0000-4000-8000-000000000274",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000363",
+    "target": "00000000-0000-4000-8000-000000000274",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000363->00000000-0000-4000-8000-000000000274",
+     "maxCardinality": "One"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000365",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000363",
+    "target": "00000000-0000-4000-8000-000000000364"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000366->00000000-0000-4000-8000-000000000285",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000366",
+    "target": "00000000-0000-4000-8000-000000000285",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000366->00000000-0000-4000-8000-000000000285",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000366->00000000-0000-4000-8000-000000000292",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000366",
+    "target": "00000000-0000-4000-8000-000000000292",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000366->00000000-0000-4000-8000-000000000292",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000368",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000366",
+    "target": "00000000-0000-4000-8000-000000000367"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000370",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000366",
+    "target": "00000000-0000-4000-8000-000000000369"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000372",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000366",
+    "target": "00000000-0000-4000-8000-000000000371"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000374",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000366",
+    "target": "00000000-0000-4000-8000-000000000373"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000375->00000000-0000-4000-8000-000000000285",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000375",
+    "target": "00000000-0000-4000-8000-000000000285",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000375->00000000-0000-4000-8000-000000000285",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000375->00000000-0000-4000-8000-000000000292",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000375",
+    "target": "00000000-0000-4000-8000-000000000292",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000375->00000000-0000-4000-8000-000000000292",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000377",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000375",
+    "target": "00000000-0000-4000-8000-000000000376"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000379",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000375",
+    "target": "00000000-0000-4000-8000-000000000378"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000380->00000000-0000-4000-8000-000000000292",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000380",
+    "target": "00000000-0000-4000-8000-000000000292",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000380->00000000-0000-4000-8000-000000000292",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000380->00000000-0000-4000-8000-000000000305",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000380",
+    "target": "00000000-0000-4000-8000-000000000305",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000380->00000000-0000-4000-8000-000000000305",
+     "maxCardinality": "Many"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000382",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000380",
+    "target": "00000000-0000-4000-8000-000000000381"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000384",
+    "type": "Attribute",
+    "source": "00000000-0000-4000-8000-000000000380",
+    "target": "00000000-0000-4000-8000-000000000383"
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000385->00000000-0000-4000-8000-000000000292",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000385",
+    "target": "00000000-0000-4000-8000-000000000292",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000385->00000000-0000-4000-8000-000000000292",
+     "maxCardinality": "One"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000385->00000000-0000-4000-8000-000000000218",
+    "type": "Relationship",
+    "source": "00000000-0000-4000-8000-000000000385",
+    "target": "00000000-0000-4000-8000-000000000218",
+    "data": {
+     "id": "00000000-0000-4000-8000-000000000385->00000000-0000-4000-8000-000000000218",
+     "maxCardinality": "One"
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000218->00000000-0000-4000-8000-000000000233",
+    "type": "Supertype",
+    "source": "00000000-0000-4000-8000-000000000218",
+    "target": "00000000-0000-4000-8000-000000000233",
+    "data": {
+     "label": "Subtype Entity",
+     "isConnectable": false,
+     "type": "Regular",
+     "parentId": "00000000-0000-4000-8000-000000000218",
+     "isSelected": false
+    }
+   }
+  ],
+  "viewport": {
+   "x": 300,
+   "y": 200,
+   "zoom": 0.4
+  }
+ },
+ "name": "Combined ERD",
+ "updatedAtTimestamp": 1787000000
+}

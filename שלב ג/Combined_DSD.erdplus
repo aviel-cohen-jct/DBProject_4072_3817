@@ -1,0 +1,2000 @@
+{
+ "diagramType": 2,
+ "data": {
+  "nodes": [
+   {
+    "id": "00000000-0000-4000-8000-000000000386",
+    "type": "Table",
+    "position": {
+     "x": 0,
+     "y": 0
+    },
+    "data": {
+     "label": "USERS",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000387",
+       "name": "user_id",
+       "type": "INT",
+       "isPrimaryKey": true,
+       "isOptional": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000388",
+       "name": "user_name",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000389",
+       "name": "current_budget",
+       "type": "INT",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000390",
+    "type": "Table",
+    "position": {
+     "x": 380,
+     "y": 0
+    },
+    "data": {
+     "label": "PLAYERS",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000391",
+       "name": "player_id",
+       "type": "INT",
+       "isPrimaryKey": true,
+       "isOptional": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000392",
+       "name": "first_name",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000393",
+       "name": "last_name",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000394",
+       "name": "position",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000395",
+       "name": "team_name",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000396",
+       "name": "current_price",
+       "type": "INT",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000397",
+    "type": "Table",
+    "position": {
+     "x": 760,
+     "y": 0
+    },
+    "data": {
+     "label": "ROUNDS",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000398",
+       "name": "round_id",
+       "type": "INT",
+       "isPrimaryKey": true,
+       "isOptional": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000399",
+       "name": "round_number",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000400",
+       "name": "start_date",
+       "type": "DATE",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000401",
+       "name": "end_date",
+       "type": "DATE",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000402",
+       "name": "status",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000403",
+    "type": "Table",
+    "position": {
+     "x": 1140,
+     "y": 0
+    },
+    "data": {
+     "label": "PRICE_HISTORY",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000404",
+       "name": "history_id",
+       "type": "INT",
+       "isPrimaryKey": true,
+       "isOptional": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000405",
+       "name": "recorded_price",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000406",
+       "name": "player_id",
+       "type": "None",
+       "isPrimaryKey": false,
+       "isForeignKey": true,
+       "isOptional": false,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000506",
+        "sourceTableId": "00000000-0000-4000-8000-000000000390",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000391",
+          "name": "player_id",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000407",
+       "name": "round_id",
+       "type": "None",
+       "isPrimaryKey": false,
+       "isForeignKey": true,
+       "isOptional": false,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000507",
+        "sourceTableId": "00000000-0000-4000-8000-000000000397",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000398",
+          "name": "round_id",
+          "type": "INT"
+         }
+        ]
+       }
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000408",
+    "type": "Table",
+    "position": {
+     "x": 1520,
+     "y": 0
+    },
+    "data": {
+     "label": "TRANSACTIONS",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000409",
+       "name": "transaction_id",
+       "type": "INT",
+       "isPrimaryKey": true,
+       "isOptional": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000410",
+       "name": "transaction_time",
+       "type": "DATE",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000411",
+       "name": "action_type",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000412",
+       "name": "transaction_price",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000413",
+       "name": "user_id",
+       "type": "None",
+       "isPrimaryKey": false,
+       "isForeignKey": true,
+       "isOptional": false,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000508",
+        "sourceTableId": "00000000-0000-4000-8000-000000000386",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000387",
+          "name": "user_id",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000414",
+       "name": "player_id",
+       "type": "None",
+       "isPrimaryKey": false,
+       "isForeignKey": true,
+       "isOptional": false,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000509",
+        "sourceTableId": "00000000-0000-4000-8000-000000000390",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000391",
+          "name": "player_id",
+          "type": "INT"
+         }
+        ]
+       }
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000415",
+    "type": "Table",
+    "position": {
+     "x": 0,
+     "y": 320
+    },
+    "data": {
+     "label": "USER_SQUADS",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000416",
+       "name": "squad_record_id",
+       "type": "INT",
+       "isPrimaryKey": true,
+       "isOptional": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000417",
+       "name": "lineup_status",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000418",
+       "name": "user_id",
+       "type": "None",
+       "isPrimaryKey": false,
+       "isForeignKey": true,
+       "isOptional": false,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000510",
+        "sourceTableId": "00000000-0000-4000-8000-000000000386",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000387",
+          "name": "user_id",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000419",
+       "name": "player_id",
+       "type": "None",
+       "isPrimaryKey": false,
+       "isForeignKey": true,
+       "isOptional": false,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000511",
+        "sourceTableId": "00000000-0000-4000-8000-000000000390",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000391",
+          "name": "player_id",
+          "type": "INT"
+         }
+        ]
+       }
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000420",
+    "type": "Table",
+    "position": {
+     "x": 380,
+     "y": 320
+    },
+    "data": {
+     "label": "PLAYER",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000421",
+       "name": "playerid",
+       "type": "INT",
+       "isPrimaryKey": true,
+       "isOptional": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000422",
+       "name": "playername",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000423",
+       "name": "birthdate",
+       "type": "DATE",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000424",
+       "name": "position",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000425",
+       "name": "height",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000426",
+       "name": "strongleg",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000427",
+       "name": "nativecountry",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000428",
+    "type": "Table",
+    "position": {
+     "x": 760,
+     "y": 320
+    },
+    "data": {
+     "label": "GOALKEEPER",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000429",
+       "name": "playerid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000512",
+        "sourceTableId": "00000000-0000-4000-8000-000000000420",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000421",
+          "name": "playerid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000430",
+       "name": "glovesnumber",
+       "type": "INT",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000431",
+    "type": "Table",
+    "position": {
+     "x": 1140,
+     "y": 320
+    },
+    "data": {
+     "label": "COACH",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000432",
+       "name": "coachid",
+       "type": "INT",
+       "isPrimaryKey": true,
+       "isOptional": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000433",
+       "name": "coachname",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000434",
+       "name": "gender",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000435",
+       "name": "birthday",
+       "type": "DATE",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000436",
+       "name": "prodate",
+       "type": "DATE",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000437",
+    "type": "Table",
+    "position": {
+     "x": 1520,
+     "y": 320
+    },
+    "data": {
+     "label": "REFEREE",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000438",
+       "name": "refereeid",
+       "type": "INT",
+       "isPrimaryKey": true,
+       "isOptional": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000439",
+       "name": "refereename",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000440",
+       "name": "gender",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000441",
+       "name": "birthday",
+       "type": "DATE",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000442",
+       "name": "prodate",
+       "type": "DATE",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000443",
+    "type": "Table",
+    "position": {
+     "x": 0,
+     "y": 640
+    },
+    "data": {
+     "label": "TEAM",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000444",
+       "name": "teamid",
+       "type": "INT",
+       "isPrimaryKey": true,
+       "isOptional": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000445",
+       "name": "teamname",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000446",
+       "name": "country",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000447",
+       "name": "yearfounded",
+       "type": "INT",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000448",
+    "type": "Table",
+    "position": {
+     "x": 380,
+     "y": 640
+    },
+    "data": {
+     "label": "STADIUM",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000449",
+       "name": "stadiumid",
+       "type": "INT",
+       "isPrimaryKey": true,
+       "isOptional": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000450",
+       "name": "stadiumname",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000451",
+       "name": "city",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000452",
+       "name": "capacity",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000453",
+       "name": "yearfounded",
+       "type": "INT",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000454",
+    "type": "Table",
+    "position": {
+     "x": 760,
+     "y": 640
+    },
+    "data": {
+     "label": "MATCH",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000455",
+       "name": "matchid",
+       "type": "INT",
+       "isPrimaryKey": true,
+       "isOptional": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000456",
+       "name": "matchdate",
+       "type": "DATE",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000457",
+       "name": "stage",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000458",
+    "type": "Table",
+    "position": {
+     "x": 1140,
+     "y": 640
+    },
+    "data": {
+     "label": "MATCHSTADIUM",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000459",
+       "name": "matchid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000513",
+        "sourceTableId": "00000000-0000-4000-8000-000000000454",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000455",
+          "name": "matchid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000460",
+       "name": "stadiumid",
+       "type": "None",
+       "isPrimaryKey": false,
+       "isForeignKey": true,
+       "isOptional": false,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000514",
+        "sourceTableId": "00000000-0000-4000-8000-000000000448",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000449",
+          "name": "stadiumid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000461",
+       "name": "attendees",
+       "type": "INT",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000462",
+    "type": "Table",
+    "position": {
+     "x": 1520,
+     "y": 640
+    },
+    "data": {
+     "label": "MATCHTEAM",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000463",
+       "name": "matchid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000515",
+        "sourceTableId": "00000000-0000-4000-8000-000000000454",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000455",
+          "name": "matchid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000464",
+       "name": "teamid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000516",
+        "sourceTableId": "00000000-0000-4000-8000-000000000443",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000444",
+          "name": "teamid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000465",
+       "name": "role",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000466",
+       "name": "score",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000467",
+       "name": "winloss",
+       "type": "VARCHAR",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000468",
+    "type": "Table",
+    "position": {
+     "x": 0,
+     "y": 960
+    },
+    "data": {
+     "label": "REFEREEAT",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000469",
+       "name": "matchid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000517",
+        "sourceTableId": "00000000-0000-4000-8000-000000000454",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000455",
+          "name": "matchid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000470",
+       "name": "refereeid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000518",
+        "sourceTableId": "00000000-0000-4000-8000-000000000437",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000438",
+          "name": "refereeid",
+          "type": "INT"
+         }
+        ]
+       }
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000471",
+    "type": "Table",
+    "position": {
+     "x": 380,
+     "y": 960
+    },
+    "data": {
+     "label": "COACHEDBY",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000472",
+       "name": "coachid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000519",
+        "sourceTableId": "00000000-0000-4000-8000-000000000431",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000432",
+          "name": "coachid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000473",
+       "name": "teamid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000520",
+        "sourceTableId": "00000000-0000-4000-8000-000000000443",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000444",
+          "name": "teamid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000474",
+       "name": "startdate",
+       "type": "DATE",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000475",
+       "name": "salary",
+       "type": "DECIMAL",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000476",
+    "type": "Table",
+    "position": {
+     "x": 760,
+     "y": 960
+    },
+    "data": {
+     "label": "PLAYSFOR_PLAYER",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000477",
+       "name": "playerid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000521",
+        "sourceTableId": "00000000-0000-4000-8000-000000000420",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000421",
+          "name": "playerid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000478",
+       "name": "teamid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000522",
+        "sourceTableId": "00000000-0000-4000-8000-000000000443",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000444",
+          "name": "teamid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000479",
+       "name": "startdate",
+       "type": "DATE",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000480",
+       "name": "salary",
+       "type": "DECIMAL",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000481",
+    "type": "Table",
+    "position": {
+     "x": 1140,
+     "y": 960
+    },
+    "data": {
+     "label": "PLAYSFOR_GK",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000482",
+       "name": "playerid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000523",
+        "sourceTableId": "00000000-0000-4000-8000-000000000428",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000429",
+          "name": "playerid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000483",
+       "name": "teamid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000524",
+        "sourceTableId": "00000000-0000-4000-8000-000000000443",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000444",
+          "name": "teamid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000484",
+       "name": "startdate",
+       "type": "DATE",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000485",
+       "name": "salary",
+       "type": "DECIMAL",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000486",
+    "type": "Table",
+    "position": {
+     "x": 1520,
+     "y": 960
+    },
+    "data": {
+     "label": "PLAYERMATCHSTATS",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000487",
+       "name": "playerid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000525",
+        "sourceTableId": "00000000-0000-4000-8000-000000000420",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000421",
+          "name": "playerid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000488",
+       "name": "matchid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000526",
+        "sourceTableId": "00000000-0000-4000-8000-000000000454",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000455",
+          "name": "matchid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000489",
+       "name": "goals",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000490",
+       "name": "assists",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000491",
+       "name": "passcompleted",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000492",
+       "name": "passattempts",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000493",
+       "name": "tackles",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000494",
+       "name": "yellowcard",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000495",
+       "name": "redcard",
+       "type": "INT",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000496",
+    "type": "Table",
+    "position": {
+     "x": 0,
+     "y": 1280
+    },
+    "data": {
+     "label": "GKMATCHSTATS",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000497",
+       "name": "playerid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000527",
+        "sourceTableId": "00000000-0000-4000-8000-000000000428",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000429",
+          "name": "playerid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000498",
+       "name": "matchid",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000528",
+        "sourceTableId": "00000000-0000-4000-8000-000000000454",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000455",
+          "name": "matchid",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000499",
+       "name": "saves",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000500",
+       "name": "goalsconceded",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000501",
+       "name": "yellowcard",
+       "type": "INT",
+       "isPrimaryKey": false
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000502",
+       "name": "redcard",
+       "type": "INT",
+       "isPrimaryKey": false
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000503",
+    "type": "Table",
+    "position": {
+     "x": 380,
+     "y": 1280
+    },
+    "data": {
+     "label": "PLAYER_MAPPING",
+     "isConnectable": false,
+     "columns": [
+      {
+       "id": "00000000-0000-4000-8000-000000000504",
+       "name": "bursa_player_id",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000529",
+        "sourceTableId": "00000000-0000-4000-8000-000000000390",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000391",
+          "name": "player_id",
+          "type": "INT"
+         }
+        ]
+       }
+      },
+      {
+       "id": "00000000-0000-4000-8000-000000000505",
+       "name": "real_player_id",
+       "type": "None",
+       "isPrimaryKey": true,
+       "isOptional": false,
+       "isForeignKey": true,
+       "foreignKeyProps": {
+        "foreignKeyGroupId": "00000000-0000-4000-8000-000000000530",
+        "sourceTableId": "00000000-0000-4000-8000-000000000420",
+        "columns": [
+         {
+          "id": "fk_00000000-0000-4000-8000-000000000421",
+          "name": "playerid",
+          "type": "INT"
+         }
+        ]
+       }
+      }
+     ],
+     "numberOfGroups": 0,
+     "isSelected": false
+    },
+    "measured": {
+     "width": 100,
+     "height": 50
+    },
+    "selected": false,
+    "dragging": false
+   }
+  ],
+  "edges": [
+   {
+    "id": "00000000-0000-4000-8000-000000000390->00000000-0000-4000-8000-000000000403_00000000-0000-4000-8000-000000000506",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000390",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000506",
+    "target": "00000000-0000-4000-8000-000000000403",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000506",
+      "sourceTableId": "00000000-0000-4000-8000-000000000390",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000391",
+        "name": "player_id",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000397->00000000-0000-4000-8000-000000000403_00000000-0000-4000-8000-000000000507",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000397",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000507",
+    "target": "00000000-0000-4000-8000-000000000403",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000507",
+      "sourceTableId": "00000000-0000-4000-8000-000000000397",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000398",
+        "name": "round_id",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000386->00000000-0000-4000-8000-000000000408_00000000-0000-4000-8000-000000000508",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000386",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000508",
+    "target": "00000000-0000-4000-8000-000000000408",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000508",
+      "sourceTableId": "00000000-0000-4000-8000-000000000386",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000387",
+        "name": "user_id",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000390->00000000-0000-4000-8000-000000000408_00000000-0000-4000-8000-000000000509",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000390",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000509",
+    "target": "00000000-0000-4000-8000-000000000408",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000509",
+      "sourceTableId": "00000000-0000-4000-8000-000000000390",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000391",
+        "name": "player_id",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000386->00000000-0000-4000-8000-000000000415_00000000-0000-4000-8000-000000000510",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000386",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000510",
+    "target": "00000000-0000-4000-8000-000000000415",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000510",
+      "sourceTableId": "00000000-0000-4000-8000-000000000386",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000387",
+        "name": "user_id",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000390->00000000-0000-4000-8000-000000000415_00000000-0000-4000-8000-000000000511",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000390",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000511",
+    "target": "00000000-0000-4000-8000-000000000415",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000511",
+      "sourceTableId": "00000000-0000-4000-8000-000000000390",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000391",
+        "name": "player_id",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000420->00000000-0000-4000-8000-000000000428_00000000-0000-4000-8000-000000000512",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000420",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000512",
+    "target": "00000000-0000-4000-8000-000000000428",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000512",
+      "sourceTableId": "00000000-0000-4000-8000-000000000420",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000421",
+        "name": "playerid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000454->00000000-0000-4000-8000-000000000458_00000000-0000-4000-8000-000000000513",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000454",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000513",
+    "target": "00000000-0000-4000-8000-000000000458",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000513",
+      "sourceTableId": "00000000-0000-4000-8000-000000000454",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000455",
+        "name": "matchid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000448->00000000-0000-4000-8000-000000000458_00000000-0000-4000-8000-000000000514",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000448",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000514",
+    "target": "00000000-0000-4000-8000-000000000458",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000514",
+      "sourceTableId": "00000000-0000-4000-8000-000000000448",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000449",
+        "name": "stadiumid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000454->00000000-0000-4000-8000-000000000462_00000000-0000-4000-8000-000000000515",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000454",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000515",
+    "target": "00000000-0000-4000-8000-000000000462",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000515",
+      "sourceTableId": "00000000-0000-4000-8000-000000000454",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000455",
+        "name": "matchid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000443->00000000-0000-4000-8000-000000000462_00000000-0000-4000-8000-000000000516",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000443",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000516",
+    "target": "00000000-0000-4000-8000-000000000462",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000516",
+      "sourceTableId": "00000000-0000-4000-8000-000000000443",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000444",
+        "name": "teamid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000454->00000000-0000-4000-8000-000000000468_00000000-0000-4000-8000-000000000517",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000454",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000517",
+    "target": "00000000-0000-4000-8000-000000000468",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000517",
+      "sourceTableId": "00000000-0000-4000-8000-000000000454",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000455",
+        "name": "matchid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000437->00000000-0000-4000-8000-000000000468_00000000-0000-4000-8000-000000000518",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000437",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000518",
+    "target": "00000000-0000-4000-8000-000000000468",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000518",
+      "sourceTableId": "00000000-0000-4000-8000-000000000437",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000438",
+        "name": "refereeid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000431->00000000-0000-4000-8000-000000000471_00000000-0000-4000-8000-000000000519",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000431",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000519",
+    "target": "00000000-0000-4000-8000-000000000471",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000519",
+      "sourceTableId": "00000000-0000-4000-8000-000000000431",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000432",
+        "name": "coachid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000443->00000000-0000-4000-8000-000000000471_00000000-0000-4000-8000-000000000520",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000443",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000520",
+    "target": "00000000-0000-4000-8000-000000000471",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000520",
+      "sourceTableId": "00000000-0000-4000-8000-000000000443",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000444",
+        "name": "teamid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000420->00000000-0000-4000-8000-000000000476_00000000-0000-4000-8000-000000000521",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000420",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000521",
+    "target": "00000000-0000-4000-8000-000000000476",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000521",
+      "sourceTableId": "00000000-0000-4000-8000-000000000420",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000421",
+        "name": "playerid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000443->00000000-0000-4000-8000-000000000476_00000000-0000-4000-8000-000000000522",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000443",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000522",
+    "target": "00000000-0000-4000-8000-000000000476",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000522",
+      "sourceTableId": "00000000-0000-4000-8000-000000000443",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000444",
+        "name": "teamid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000428->00000000-0000-4000-8000-000000000481_00000000-0000-4000-8000-000000000523",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000428",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000523",
+    "target": "00000000-0000-4000-8000-000000000481",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000523",
+      "sourceTableId": "00000000-0000-4000-8000-000000000428",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000429",
+        "name": "playerid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000443->00000000-0000-4000-8000-000000000481_00000000-0000-4000-8000-000000000524",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000443",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000524",
+    "target": "00000000-0000-4000-8000-000000000481",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000524",
+      "sourceTableId": "00000000-0000-4000-8000-000000000443",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000444",
+        "name": "teamid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000420->00000000-0000-4000-8000-000000000486_00000000-0000-4000-8000-000000000525",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000420",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000525",
+    "target": "00000000-0000-4000-8000-000000000486",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000525",
+      "sourceTableId": "00000000-0000-4000-8000-000000000420",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000421",
+        "name": "playerid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000454->00000000-0000-4000-8000-000000000486_00000000-0000-4000-8000-000000000526",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000454",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000526",
+    "target": "00000000-0000-4000-8000-000000000486",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000526",
+      "sourceTableId": "00000000-0000-4000-8000-000000000454",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000455",
+        "name": "matchid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000428->00000000-0000-4000-8000-000000000496_00000000-0000-4000-8000-000000000527",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000428",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000527",
+    "target": "00000000-0000-4000-8000-000000000496",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000527",
+      "sourceTableId": "00000000-0000-4000-8000-000000000428",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000429",
+        "name": "playerid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000454->00000000-0000-4000-8000-000000000496_00000000-0000-4000-8000-000000000528",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000454",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000528",
+    "target": "00000000-0000-4000-8000-000000000496",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000528",
+      "sourceTableId": "00000000-0000-4000-8000-000000000454",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000455",
+        "name": "matchid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000390->00000000-0000-4000-8000-000000000503_00000000-0000-4000-8000-000000000529",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000390",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000529",
+    "target": "00000000-0000-4000-8000-000000000503",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000529",
+      "sourceTableId": "00000000-0000-4000-8000-000000000390",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000391",
+        "name": "player_id",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "00000000-0000-4000-8000-000000000420->00000000-0000-4000-8000-000000000503_00000000-0000-4000-8000-000000000530",
+    "type": "Relational",
+    "source": "00000000-0000-4000-8000-000000000420",
+    "targetHandle": "foreign-key-handle-00000000-0000-4000-8000-000000000530",
+    "target": "00000000-0000-4000-8000-000000000503",
+    "markerStart": {
+     "type": "arrow"
+    },
+    "data": {
+     "foreignKeyProps": {
+      "foreignKeyGroupId": "00000000-0000-4000-8000-000000000530",
+      "sourceTableId": "00000000-0000-4000-8000-000000000420",
+      "columns": [
+       {
+        "id": "fk_00000000-0000-4000-8000-000000000421",
+        "name": "playerid",
+        "type": "INT"
+       }
+      ]
+     }
+    }
+   }
+  ],
+  "viewport": {
+   "x": 0,
+   "y": 0,
+   "zoom": 0.5
+  }
+ },
+ "name": "Combined DSD After Integration",
+ "updatedAtTimestamp": 1787000000
+}

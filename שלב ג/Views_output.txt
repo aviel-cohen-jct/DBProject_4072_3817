@@ -1,0 +1,95 @@
+﻿CREATE VIEW
+CREATE VIEW
+ player_id |     bursa_name     |  position  | current_price | trade_volume | avg_tx_price | matches_played | total_goals | total_assists | total_tackles 
+-----------+--------------------+------------+---------------+--------------+--------------+----------------+-------------+---------------+---------------
+         1 | Mile Goodbairn     | Goalkeeper |         10663 |           36 |     11361.69 |              8 |           8 |             5 |            22
+         2 | Ruperto Furmage    | Midfielder |         16981 |           30 |     12163.60 |              8 |           9 |             3 |            14
+         3 | Nevil Trayhorn     | Defender   |         12587 |           39 |     12271.82 |              8 |           4 |             3 |            23
+         4 | Debora Stirland    | Defender   |         15923 |           28 |     11538.89 |              8 |           9 |             3 |            26
+         5 | Regina Scandroot   | Midfielder |         11137 |           23 |     13481.83 |              8 |           9 |             3 |            14
+         6 | Bette Bazylets     | Defender   |         14366 |           33 |     11306.06 |              8 |           6 |             6 |            20
+         7 | Sophronia Walewski | Attacker   |         10828 |           29 |     12539.83 |              8 |           7 |             3 |            21
+         8 | Yoshi McMichan     | Attacker   |          7568 |           27 |     12245.07 |              8 |           9 |             5 |            18
+         9 | Sheena Retallick   | Defender   |         15092 |           30 |     12269.53 |              8 |           9 |             6 |            14
+        10 | Alaster Coolson    | Defender   |         10229 |           35 |     13217.89 |              8 |          10 |             2 |            21
+(10 rows)
+
+ playerid |     playername     |  position  | nativecountry |     teamname      |  salary   | bursa_current_price | bursa_min_price | bursa_max_price 
+----------+--------------------+------------+---------------+-------------------+-----------+---------------------+-----------------+-----------------
+        1 | Ruben Gnabry 1     | Forward    | France        | Sweden FC 2       |   5000.00 |               10663 |            4697 |           19613
+        2 | Marcus Silva 2     | Forward    | France        | Turkey FC 3       |  72730.00 |               16981 |            4008 |           18959
+        3 | Gabriel Gnabry 3   | Defender   | Croatia       | Spain FC 4        |  59007.00 |               12587 |            5126 |           19436
+        4 | Ousmane Bastoni 4  | Midfielder | Morocco       | Ivory Coast FC 5  | 122502.00 |               15923 |            4191 |           19237
+        5 | Alphonso Alvarez 5 | Defender   | Egypt         | Poland FC 6       | 118933.00 |               11137 |            4781 |           19675
+        6 | Alexis Kimmich 6   | Forward    | Austria       | Portugal FC 7     |  47012.00 |               14366 |            4178 |           19558
+        7 | Alexis Becker 7    | Midfielder | Brazil        | Morocco FC 8      | 137484.00 |               10828 |            6613 |           19742
+        8 | Leroy Camavinga 8  | Defender   | France        | Argentina FC 9    |  95873.00 |                7568 |            4380 |           19777
+        9 | Aurelien Foden 9   | Forward    | France        | Netherlands FC 10 |  70501.00 |               15092 |            4181 |           19967
+       10 | Erling Messi 10    | Defender   | Colombia      | England FC 11     | 123905.00 |               10229 |            6393 |           19400
+(10 rows)
+
+    bursa_name    |  position  | current_price | total_contribution | matches_played 
+------------------+------------+---------------+--------------------+----------------
+ Tierney Gyorgy   | Defender   |          4494 |                 18 |              8
+ Vonny Van Oord   | Attacker   |          4534 |                 18 |              8
+ Korney Lown      | Goalkeeper |          4955 |                 18 |              8
+ Kearney Schwier  | Goalkeeper |          5829 |                 18 |              8
+ Mame Roberti     | Attacker   |          7304 |                 18 |              8
+ Ann Masden       | Midfielder |          9165 |                 18 |              8
+ Lita Franssen    | Goalkeeper |          9781 |                 18 |              8
+ Stan Leere       | Goalkeeper |          4158 |                 17 |              8
+ Valaria Twine    | Defender   |          5952 |                 17 |              8
+ Rodie Smitham    | Defender   |          6221 |                 17 |              8
+ Marianne Usher   | Attacker   |          8335 |                 17 |              8
+ Bradan Souten    | Defender   |          8765 |                 17 |              8
+ Carmelle Hadley  | Midfielder |          9470 |                 17 |              8
+ Junina Gebbie    | Midfielder |          4052 |                 16 |              8
+ Jenda Mapplebeck | Midfielder |          5278 |                 16 |              8
+(15 rows)
+
+  position  | players_count | avg_price | avg_trade_volume | avg_goals_per_match 
+------------+---------------+-----------+------------------+---------------------
+ Attacker   |           126 |  12045.79 |            32.90 |               1.009
+ Goalkeeper |           121 |  11857.98 |            33.39 |               0.999
+ Midfielder |           113 |  11760.97 |            32.54 |               1.013
+ Defender   |           140 |  11579.70 |            33.63 |               1.001
+(4 rows)
+
+       playername       |    teamname    |  salary   | bursa_current_price 
+------------------------+----------------+-----------+---------------------
+ Trent Maignan 31       | Spain FC 32    | 159867.00 |                5218
+ Achraf Tchouameni 87   | Spain FC 88    | 158865.00 |                7776
+ Trent Tchouameni 462   | Portugal FC 63 | 158320.00 |                9448
+ Marquinhos Odegaard 71 | Austria FC 72  | 158061.00 |                4946
+ Alisson Silva 315      | Austria FC 16  | 157257.00 |                7787
+ Rafael Valverde 281    | Nigeria FC 82  | 157176.00 |                6147
+ Bruno Lewandowski 358  | Turkey FC 59   | 156947.00 |                9347
+ Virgil Bellingham 42   | Brazil FC 43   | 156892.00 |                6878
+ Gabriel Maignan 331    | Spain FC 32    | 156313.00 |                8834
+ Eduardo Saliba 278     | France FC 79   | 155998.00 |                7319
+ Alexis Rashford 75     | Colombia FC 76 | 155489.00 |               10684
+ Ronald Dembele 54      | Scotland FC 55 | 155011.00 |               11393
+ Federico Messi 439     | Germany FC 40  | 154697.00 |                4788
+ Lautaro Donnarumma 252 | Egypt FC 53    | 154295.00 |                4609
+ Federico Tonali 378    | France FC 79   | 153813.00 |               11384
+(15 rows)
+
+    teamname    | mapped_players | avg_bursa_price | total_bursa_value | avg_price_volatility 
+----------------+----------------+-----------------+-------------------+----------------------
+ Colombia FC 48 |              5 |        16467.20 |             82336 |             15186.20
+ Spain FC 4     |              5 |        16466.40 |             82332 |             15218.00
+ Nigeria FC 26  |              5 |        15829.60 |             79148 |             15309.80
+ Japan FC 41    |              5 |        15438.20 |             77191 |             15399.60
+ Croatia FC 45  |              5 |        15246.60 |             76233 |             14861.60
+ Turkey FC 3    |              5 |        15226.60 |             76133 |             14936.40
+ Morocco FC 92  |              5 |        15186.60 |             75933 |             15321.20
+ Nigeria FC 54  |              5 |        14977.40 |             74887 |             14796.40
+ Colombia FC 20 |              5 |        14879.40 |             74397 |             15377.00
+ Israel FC 47   |              5 |        14711.00 |             73555 |             15349.80
+ Senegal FC 14  |              5 |        14605.00 |             73025 |             15258.00
+ Spain FC 88    |              5 |        14235.60 |             71178 |             14266.00
+ Brazil FC 15   |              5 |        14183.80 |             70919 |             14893.00
+ Norway FC 84   |              5 |        14175.40 |             70877 |             14646.20
+ Belgium FC 57  |              5 |        14089.60 |             70448 |             14661.60
+(15 rows)
+
