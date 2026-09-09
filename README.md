@@ -967,7 +967,7 @@ npm run dev        # http://localhost:5173
 | ![תובנות שוק – שאילתות שלב ב](images/stageE_07_insights.png) | ![משחק עם כל הפרטים המקושרים](images/stageE_14_admin_matches_detail.png) |
 | ![עדכון לפי מפתח](images/stageE_12_update_edit_step.png) | ![סגירת מחזור – הטריגר יצר היסטוריה](images/stageE_18_round_close.png) |
 
-כל צילומי המסך (18) נמצאים ב-`images/stageE_*.png` ומוסברים בדוח המלא.
+כל צילומי המסך (26, כולל כל מסכי המנהל, הרשמה, עסקה שנדחתה ע"י הטריגר ומחיקה שנחסמה ע"י מפתח זר) נמצאים ב-`images/stageE_*.png` ומוסברים בדוח המלא.
 
 ## 5. קבצי ההגשה — `DBProject_4072_3817/שלב ה/`
 
