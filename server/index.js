@@ -4,6 +4,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { crudRouter } from './crud.js';
+import { reportsRouter } from './reports.js';
+import { clientMeta } from './meta.js';
 
 dotenv.config();
 
@@ -11,10 +14,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.API_PORT || 5001; // API port (PORT is reserved for the Vite dev server)
 
 app.use(cors());
 app.use(express.json());
+
+// Return DATE / TIMESTAMP columns as plain strings (no timezone shifting in JSON)
+pg.types.setTypeParser(1082, (v) => v);
+pg.types.setTypeParser(1114, (v) => v);
 
 // Setup PostgreSQL client pool
 const pool = new pg.Pool({
@@ -316,6 +323,11 @@ app.put('/api/portfolio/lineup', async (req, res) => {
     res.status(500).json({ error: 'Database error' });
   }
 });
+
+// Stage E: metadata, generic CRUD for every table, Stage B queries and Stage D routines
+app.get('/api/meta', (_req, res) => res.json(clientMeta()));
+app.use('/api/tables', crudRouter(pool));
+app.use('/api', reportsRouter(pool));
 
 // Start listening
 app.listen(PORT, () => {

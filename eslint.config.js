@@ -18,5 +18,11 @@ export default defineConfig([
     languageOptions: {
       globals: globals.browser,
     },
+    rules: {
+      // The UI talks to a generic, metadata-driven API whose row shapes are dynamic.
+      '@typescript-eslint/no-explicit-any': 'off',
+      // Data is loaded in effects and stored in state (classic fetch-in-effect pattern).
+      'react-hooks/set-state-in-effect': 'off',
+    },
   },
 ])
